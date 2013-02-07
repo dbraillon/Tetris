@@ -1,6 +1,7 @@
 package com.dbraillon.tetris.views;
 
 import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -15,6 +16,8 @@ public class MenuView {
 	private final int GO_UP = -1;
 	private final int GO_DOWN = 1;
 	
+	private final Color WHITE_COLOR = new Color(255, 255, 255);
+	
 	
 	private int _width, _height;
 	private int _itemSelected;
@@ -28,6 +31,7 @@ public class MenuView {
 	
 	public void render(Graphics graphics) {
 		
+		graphics.setColor(WHITE_COLOR);
 		graphics.drawString("Tétris2d", percent(_width, 10), percent(_height, 10));
 		graphics.drawString(get_ItemSelected(PLAY_ITEM) + " Jouer", percent(_width, 10), percent(_height, 10) + 20);
 		graphics.drawString(get_ItemSelected(QUIT_ITEM) + " Quitter", percent(_width, 10), percent(_height, 10) + 35);
@@ -50,7 +54,7 @@ public class MenuView {
 			return select_ItemSelected(gameContainer);
 		}
 		
-		return 0;
+		return Game.MENU_VIEW;
 	}
 	
 	private int percent(int value, int percent) {

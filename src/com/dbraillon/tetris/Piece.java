@@ -6,13 +6,13 @@ import org.newdawn.slick.Color;
 
 public class Piece {
 
-	public Item[] pieces;
+	public Cube[] pieces;
 	public int piece;
 	public int position;
 	
 	public Piece() {
 		
-		pieces = new Item[4];
+		pieces = new Cube[4];
 		
 		Random r = new Random();
 		int p = r.nextInt(7);
@@ -22,52 +22,52 @@ public class Piece {
 		switch(piece) {
 		case 0:
 			// O
-			pieces[0] = new Item(4,-1, new Color(255, 255, 0));
-			pieces[1] = new Item(4,0, new Color(255, 255, 0));
-			pieces[2] = new Item(5,-1, new Color(255, 255, 0));
-			pieces[3] = new Item(5,0, new Color(255, 255, 0));
+			pieces[0] = new Cube(4,-1, new Color(255, 255, 0));
+			pieces[1] = new Cube(4,0, new Color(255, 255, 0));
+			pieces[2] = new Cube(5,-1, new Color(255, 255, 0));
+			pieces[3] = new Cube(5,0, new Color(255, 255, 0));
 			break;
 		case 1:
 			// T
-			pieces[0] = new Item(4,-2, new Color(0, 255, 255));
-			pieces[1] = new Item(4,-1, new Color(0, 255, 255));
-			pieces[2] = new Item(4,0, new Color(0, 255, 255));
-			pieces[3] = new Item(5,-1, new Color(0, 255, 255));
+			pieces[0] = new Cube(4,-2, new Color(0, 255, 255));
+			pieces[1] = new Cube(4,-1, new Color(0, 255, 255));
+			pieces[2] = new Cube(4,0, new Color(0, 255, 255));
+			pieces[3] = new Cube(5,-1, new Color(0, 255, 255));
 			break;
 		case 2:
 			// I
-			pieces[0] = new Item(5,-3, new Color(255, 0, 255));
-			pieces[1] = new Item(5,-2, new Color(255, 0, 255));
-			pieces[2] = new Item(5,-1, new Color(255, 0, 255));
-			pieces[3] = new Item(5,0, new Color(255, 0, 255));
+			pieces[0] = new Cube(5,-3, new Color(255, 0, 255));
+			pieces[1] = new Cube(5,-2, new Color(255, 0, 255));
+			pieces[2] = new Cube(5,-1, new Color(255, 0, 255));
+			pieces[3] = new Cube(5,0, new Color(255, 0, 255));
 			break;
 		case 3:
 			// L
-			pieces[0] = new Item(4,-2, new Color(255, 127, 0));
-			pieces[1] = new Item(4,-1, new Color(255, 127, 0));
-			pieces[2] = new Item(4,0, new Color(255, 127, 0));
-			pieces[3] = new Item(5,0, new Color(255, 127, 0));
+			pieces[0] = new Cube(4,-2, new Color(255, 127, 0));
+			pieces[1] = new Cube(4,-1, new Color(255, 127, 0));
+			pieces[2] = new Cube(4,0, new Color(255, 127, 0));
+			pieces[3] = new Cube(5,0, new Color(255, 127, 0));
 			break;
 		case 4:
 			// J
-			pieces[0] = new Item(5,-2, new Color(0, 0, 255));
-			pieces[1] = new Item(5,-1, new Color(0, 0, 255));
-			pieces[2] = new Item(5,0, new Color(0, 0, 255));
-			pieces[3] = new Item(4,0, new Color(0, 0, 255));
+			pieces[0] = new Cube(5,-2, new Color(0, 0, 255));
+			pieces[1] = new Cube(5,-1, new Color(0, 0, 255));
+			pieces[2] = new Cube(5,0, new Color(0, 0, 255));
+			pieces[3] = new Cube(4,0, new Color(0, 0, 255));
 			break;
 		case 5:
 			// Z
-			pieces[0] = new Item(5,-2, new Color(255, 0, 0));
-			pieces[1] = new Item(5,-1, new Color(255, 0, 0));
-			pieces[2] = new Item(4,-1, new Color(255, 0, 0));
-			pieces[3] = new Item(4,0, new Color(255, 0, 0));
+			pieces[0] = new Cube(5,-2, new Color(255, 0, 0));
+			pieces[1] = new Cube(5,-1, new Color(255, 0, 0));
+			pieces[2] = new Cube(4,-1, new Color(255, 0, 0));
+			pieces[3] = new Cube(4,0, new Color(255, 0, 0));
 			break;
 		case 6:
 			// S
-			pieces[0] = new Item(4,-2, new Color(0, 255, 0));
-			pieces[1] = new Item(4,-1, new Color(0, 255, 0));
-			pieces[2] = new Item(5,-1, new Color(0, 255, 0));
-			pieces[3] = new Item(5,0, new Color(0, 255, 0));
+			pieces[0] = new Cube(4,-2, new Color(0, 255, 0));
+			pieces[1] = new Cube(4,-1, new Color(0, 255, 0));
+			pieces[2] = new Cube(5,-1, new Color(0, 255, 0));
+			pieces[3] = new Cube(5,0, new Color(0, 255, 0));
 			break;
 		}
 	}

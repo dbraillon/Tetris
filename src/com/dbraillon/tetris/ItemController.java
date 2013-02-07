@@ -1,5 +1,6 @@
 package com.dbraillon.tetris;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class ItemController {
@@ -12,29 +13,32 @@ public class ItemController {
 		this.yMap = yMap;
 	}
 	
-	public Piece create(Vector<Item> items) {
+	public Piece create(ArrayList<Cube> items) {
 		
-		Piece cPiece = new Piece();
+		return new Piece();
+	}
+	
+	public boolean verify(ArrayList<Cube> items, Piece piece) {
 		
-		for(Item cItem : items) {
+		for(Cube cItem : items) {
 			
-			for(Item oItem : cPiece.pieces) {
+			for(Cube oItem : piece.pieces) {
 				
 				if(cItem.x == oItem.x && cItem.y == oItem.y) {
 					
-					return null;
+					return false;
 				}
 			}
 		}
 		
-		return cPiece;
+		return true;
 	}
 	
-	public boolean fall(Item cItem, Vector<Item> items) {
+	public boolean fall(Cube cItem, Vector<Cube> items) {
 		
 		boolean canFall = true;
 		
-		for(Item oItem : items) {
+		for(Cube oItem : items) {
 			
 			if(cItem.y + 1 == oItem.y && cItem.x == oItem.x) {
 				
@@ -56,13 +60,13 @@ public class ItemController {
 		return false;
 	}
 	
-	public boolean fall(Piece cPiece, Vector<Item> items) {
+	public boolean fall(Piece cPiece, ArrayList<Cube> items) {
 		
 		boolean canFall = true;
 		
-		for(Item oItem : items) {
+		for(Cube oItem : items) {
 			
-			for(Item cItem : cPiece.pieces) {
+			for(Cube cItem : cPiece.pieces) {
 				
 				if(cItem.y + 1 == oItem.y && cItem.x == oItem.x) {
 					
@@ -71,7 +75,7 @@ public class ItemController {
 			}
 		}
 		
-		for(Item cItem : cPiece.pieces) {
+		for(Cube cItem : cPiece.pieces) {
 			
 			if(cItem.y + 1 >= yMap) {
 				
@@ -88,11 +92,11 @@ public class ItemController {
 		return false;
 	}
 	
-	public boolean move(int move, Item cItem, Vector<Item> items) {
+	public boolean move(int move, Cube cItem, Vector<Cube> items) {
 		
 		boolean canMove = true;
 		
-		for(Item oItem : items) {
+		for(Cube oItem : items) {
 			
 			if(cItem.x + move == oItem.x && cItem.y == oItem.y) {
 				
@@ -114,13 +118,13 @@ public class ItemController {
 		return false;
 	}
 	
-	public boolean move(int move, Piece cPiece, Vector<Item> items) {
+	public boolean move(int move, Piece cPiece, ArrayList<Cube> items) {
 		
 		boolean canMove = true;
 		
-		for(Item oItem : items) {
+		for(Cube oItem : items) {
 			
-			for(Item cItem : cPiece.pieces) {
+			for(Cube cItem : cPiece.pieces) {
 				
 				if(cItem.x + move == oItem.x && cItem.y == oItem.y) {
 					
@@ -129,7 +133,7 @@ public class ItemController {
 			}
 		}
 		
-		for(Item cItem : cPiece.pieces) {
+		for(Cube cItem : cPiece.pieces) {
 			
 			if(cItem.x + move >= xMap || cItem.x + move < 0) {
 				
@@ -146,13 +150,13 @@ public class ItemController {
 		return false;
 	}
 	
-	public boolean hardFall(Item cItem, Vector<Item> items) {
+	public boolean hardFall(Cube cItem, Vector<Cube> items) {
 		
 		int yFree = 0;
 		
 		for(int y = cItem.y; y < yMap; y++) {
 			
-			for(Item oItem : items) {
+			for(Cube oItem : items) {
 				
 				if(oItem.y == y && oItem.x == cItem.x) {
 					
@@ -173,16 +177,16 @@ public class ItemController {
 		return false;
 	}
 	
-	public boolean hardFall(Piece cPiece, Vector<Item> items) {
+	public boolean hardFall(Piece cPiece, ArrayList<Cube> items) {
 		
 		while(fall(cPiece, items));
 		return false;
 	}
 	
-	public boolean removeLine(Item cItem, Vector<Item> items) {
+	public boolean removeLine(Cube cItem, ArrayList<Cube> items) {
 		
 		int n = 0;
-		for(Item oItem : items) {
+		for(Cube oItem : items) {
 			
 			if(cItem.y == oItem.y) {
 				
@@ -192,9 +196,9 @@ public class ItemController {
 		
 		if(n == xMap) {
 			
-			Vector<Item> indexes = new Vector<Item>();
+			ArrayList<Cube> indexes = new ArrayList<Cube>();
 			
-			for(Item oItem : items) {
+			for(Cube oItem : items) {
 				
 				if(cItem.y == oItem.y) {
 					
@@ -206,23 +210,23 @@ public class ItemController {
 				}
 			}
 			
-			for(Item i : indexes) {
+			for(Cube i : indexes) {
 				
-				items.removeElement(i);
+				items.remove(i);
 			}
 			
-			items.removeElement(cItem);
+			items.remove(cItem);
 			return true;
 		}
 		
 		return false;
 	}
 	
-	public int removeLine(Piece cPiece, Vector<Item> items) {
+	public int removeLine(Piece cPiece, ArrayList<Cube> items) {
 		
-		Vector<Integer> ys = new Vector<Integer>();
+		ArrayList<Integer> ys = new ArrayList<Integer>();
 		
-		for(Item cItem : cPiece.pieces) {
+		for(Cube cItem : cPiece.pieces) {
 			
 			if(!ys.contains(cItem.y)) {
 				
@@ -234,7 +238,7 @@ public class ItemController {
 		for(Integer y : ys) {
 			
 			int n = 0;
-			for(Item cItem : items) {
+			for(Cube cItem : items) {
 				
 				if(cItem.y == y) {
 					
@@ -244,9 +248,9 @@ public class ItemController {
 			
 			if(n == xMap) {
 				
-				Vector<Item> indexes = new Vector<Item>();
+				ArrayList<Cube> indexes = new ArrayList<Cube>();
 				
-				for(Item oItem : items) {
+				for(Cube oItem : items) {
 					
 					if(y == oItem.y) {
 						
@@ -258,9 +262,9 @@ public class ItemController {
 					}
 				}
 				
-				for(Item i : indexes) {
+				for(Cube i : indexes) {
 					
-					items.removeElement(i);
+					items.remove(i);
 				}
 				
 				s++;
@@ -270,14 +274,14 @@ public class ItemController {
 		return s;
 	}
 
-	public boolean turn(boolean turn, Piece cPiece, Vector<Item> items) {
+	public boolean turn(boolean turn, Piece cPiece, ArrayList<Cube> items) {
 		
 		boolean canTurn = true;
 		
 		cPiece.turn(turn);
-		for(Item oItem : items) {
+		for(Cube oItem : items) {
 			
-			for(Item cItem : cPiece.pieces) {
+			for(Cube cItem : cPiece.pieces) {
 				
 				if(cItem.x == oItem.x && cItem.y == oItem.y) {
 					
@@ -286,7 +290,7 @@ public class ItemController {
 			}
 		}
 		
-		for(Item cItem : cPiece.pieces) {
+		for(Cube cItem : cPiece.pieces) {
 			
 			if(cItem.x >= xMap || cItem.x < 0 || cItem.y >= yMap) {
 				
