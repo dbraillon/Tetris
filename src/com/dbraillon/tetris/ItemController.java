@@ -1,7 +1,6 @@
 package com.dbraillon.tetris;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class ItemController {
 
@@ -13,18 +12,25 @@ public class ItemController {
 		this.yMap = yMap;
 	}
 	
-	public Piece create(ArrayList<Cube> items) {
+	public Piece create() {
 		
 		return new Piece();
 	}
 	
-	public boolean verify(ArrayList<Cube> items, Piece piece) {
+	/**
+	 * Verify if a Piece is not overriding another Piece in Field
+	 * 
+	 * @param field
+	 * @param piece
+	 * @return
+	 */
+	public boolean verify(Field field, Piece piece) {
 		
-		for(Cube cItem : items) {
+		for(Cube cube : piece.cubes) {
 			
-			for(Cube oItem : piece.pieces) {
+			if(field.getCube(cube.x, cube.y) != null) {
 				
-				if(cItem.x == oItem.x && cItem.y == oItem.y) {
+				if(!field.getCube(cube.x, cube.y).isWall) {
 					
 					return false;
 				}
@@ -34,203 +40,97 @@ public class ItemController {
 		return true;
 	}
 	
-	public boolean fall(Cube cItem, Vector<Cube> items) {
+	/**
+	 * Make a Piece fall
+	 * 
+	 * @param field
+	 * @param piece
+	 * @return
+	 */
+	public boolean fall(Field field, Piece piece) {
 		
-		boolean canFall = true;
-		
-		for(Cube oItem : items) {
+		for(Cube cube : piece.cubes) {
 			
-			if(cItem.y + 1 == oItem.y && cItem.x == oItem.x) {
+			if(cube.y + 1 >= Field.HEIGHT_TOTAL) {
 				
-				canFall = false;
+				return false;
 			}
-		}
-		
-		if(cItem.y + 1 >= yMap) {
-			
-			canFall = false;
-		}
-		
-		if(canFall) {
-			
-			cItem.fall();
-			return true;
-		}
-		
-		return false;
-	}
-	
-	public boolean fall(Piece cPiece, ArrayList<Cube> items) {
-		
-		boolean canFall = true;
-		
-		for(Cube oItem : items) {
-			
-			for(Cube cItem : cPiece.pieces) {
+			else {
 				
-				if(cItem.y + 1 == oItem.y && cItem.x == oItem.x) {
+				if(cube.y + 1 > 2) {
 					
-					canFall = false;
+					if(field.getCube(cube.x, cube.y + 1) != null) {
+						
+						return false;
+					}
 				}
 			}
 		}
 		
-		for(Cube cItem : cPiece.pieces) {
-			
-			if(cItem.y + 1 >= yMap) {
-				
-				canFall = false;
-			}
-		}
+		piece.fall();
 		
-		if(canFall) {
-			
-			cPiece.fall();
-			return true;
-		}
-		
-		return false;
+		return true;
 	}
 	
-	public boolean move(int move, Cube cItem, Vector<Cube> items) {
+	/**
+	 * Move a Piece
+	 * 
+	 * @param move
+	 * @param field
+	 * @param piece
+	 * @return
+	 */
+	public boolean move(int move, Field field, Piece piece) {
 		
-		boolean canMove = true;
-		
-		for(Cube oItem : items) {
+		for(Cube cube : piece.cubes) {
 			
-			if(cItem.x + move == oItem.x && cItem.y == oItem.y) {
+			if(cube.x + move >= Field.WIDTH_TOTAL || cube.x + move < 0) {
 				
-				canMove = false;
+				return false;
 			}
-		}
-		
-		if(cItem.x + move >= xMap || cItem.x + move < 0) {
-			
-			canMove = false;
-		}
-		
-		if(canMove) {
-			
-			cItem.move(move);
-			return true;
-		}
-		
-		return false;
-	}
-	
-	public boolean move(int move, Piece cPiece, ArrayList<Cube> items) {
-		
-		boolean canMove = true;
-		
-		for(Cube oItem : items) {
-			
-			for(Cube cItem : cPiece.pieces) {
+			else {
 				
-				if(cItem.x + move == oItem.x && cItem.y == oItem.y) {
-					
-					canMove = false;
+				if(field.getCube(cube.x + move, cube.y) != null) {
+				
+					return false;
 				}
 			}
 		}
 		
-		for(Cube cItem : cPiece.pieces) {
-			
-			if(cItem.x + move >= xMap || cItem.x + move < 0) {
-				
-				canMove = false;
-			}
-		}
+		piece.move(move);
 		
-		if(canMove) {
-			
-			cPiece.move(move);
-			return true;
-		}
+		return true;
+	}
+	
+	/**
+	 * Make a Piece hard fall
+	 * 
+	 * @param field
+	 * @param piece
+	 * @return
+	 */
+	public boolean hardFall(Field field, Piece piece) {
 		
+		while(fall(field, piece));
 		return false;
 	}
 	
-	public boolean hardFall(Cube cItem, Vector<Cube> items) {
-		
-		int yFree = 0;
-		
-		for(int y = cItem.y; y < yMap; y++) {
-			
-			for(Cube oItem : items) {
-				
-				if(oItem.y == y && oItem.x == cItem.x) {
-					
-					yFree = y - 1;
-					break;
-				}
-			}
-			
-			if(yFree != 0) {
-				
-				break;
-			}
-		}
-
-		if(yFree == 0) yFree = yMap - 1;
-		cItem.y = yFree;
-		
-		return false;
-	}
-	
-	public boolean hardFall(Piece cPiece, ArrayList<Cube> items) {
-		
-		while(fall(cPiece, items));
-		return false;
-	}
-	
-	public boolean removeLine(Cube cItem, ArrayList<Cube> items) {
-		
-		int n = 0;
-		for(Cube oItem : items) {
-			
-			if(cItem.y == oItem.y) {
-				
-				n++;
-			}
-		}
-		
-		if(n == xMap) {
-			
-			ArrayList<Cube> indexes = new ArrayList<Cube>();
-			
-			for(Cube oItem : items) {
-				
-				if(cItem.y == oItem.y) {
-					
-					indexes.add(oItem);
-				}
-				else if(cItem.y > oItem.y) {
-					
-					oItem.y++;
-				}
-			}
-			
-			for(Cube i : indexes) {
-				
-				items.remove(i);
-			}
-			
-			items.remove(cItem);
-			return true;
-		}
-		
-		return false;
-	}
-	
-	public int removeLine(Piece cPiece, ArrayList<Cube> items) {
+	/**
+	 * Try to remove a line where a Piece is
+	 * 
+	 * @param piece
+	 * @param field
+	 * @return
+	 */
+	public int removeLine(Field field, Piece piece) {
 		
 		ArrayList<Integer> ys = new ArrayList<Integer>();
 		
-		for(Cube cItem : cPiece.pieces) {
+		for(Cube cube : piece.cubes) {
 			
-			if(!ys.contains(cItem.y)) {
+			if(!ys.contains(cube.y)) {
 				
-				ys.add(cItem.y);
+				ys.add(cube.y);
 			}
 		}
 		
@@ -238,35 +138,22 @@ public class ItemController {
 		for(Integer y : ys) {
 			
 			int n = 0;
-			for(Cube cItem : items) {
+			for(int i = 1; i <= Field.WIDTH_FIELD; i++) {
 				
-				if(cItem.y == y) {
+				if(field.getCube(i, y) != null) {
 					
 					n++;
 				}
 			}
 			
-			if(n == xMap) {
+			if(n == Field.WIDTH_FIELD) {
 				
-				ArrayList<Cube> indexes = new ArrayList<Cube>();
-				
-				for(Cube oItem : items) {
+				for(int i = 1; i <= Field.WIDTH_FIELD; i++) {
 					
-					if(y == oItem.y) {
-						
-						indexes.add(oItem);
-					}
-					else if(y > oItem.y) {
-						
-						oItem.y++;
-					}
+					field.setCube(null, i, y);
 				}
 				
-				for(Cube i : indexes) {
-					
-					items.remove(i);
-				}
-				
+				field.fall(y);
 				s++;
 			}
 		}
@@ -274,34 +161,22 @@ public class ItemController {
 		return s;
 	}
 
-	public boolean turn(boolean turn, Piece cPiece, ArrayList<Cube> items) {
+	public boolean turn(boolean turn, Field field, Piece piece) {
 		
-		boolean canTurn = true;
-		
-		cPiece.turn(turn);
-		for(Cube oItem : items) {
+		piece.turn(turn);
+		if(!verify(field, piece)) {
 			
-			for(Cube cItem : cPiece.pieces) {
-				
-				if(cItem.x == oItem.x && cItem.y == oItem.y) {
-					
-					canTurn = false;
-				}
-			}
-		}
-		
-		for(Cube cItem : cPiece.pieces) {
-			
-			if(cItem.x >= xMap || cItem.x < 0 || cItem.y >= yMap) {
-				
-				canTurn = false;
-			}
-		}
-		
-		if(!canTurn) {
-			
-			cPiece.turn(!turn);
+			piece.turn(!turn);
 			return false;
+		}
+		
+		for(Cube cube : piece.cubes) {
+			
+			if(cube.x >= Field.WIDTH_TOTAL-1 || cube.x < 1 || cube.y > Field.HEIGHT_TOTAL) {
+
+				piece.turn(!turn);
+				return false;
+			}
 		}
 		
 		return true;

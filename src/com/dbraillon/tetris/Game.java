@@ -55,6 +55,7 @@ public class Game extends BasicGame {
 		switch(_selectedView) {
 		case MENU_VIEW:
 			_selectedView = _menuView.update(gc);
+			if(_selectedView == PLAY_VIEW) _playView = new PlayView(WIDTH_SCREEN, HEIGHT_SCREEN);
 			break;
 		case PLAY_VIEW:
 			_selectedView = _playView.update(gc);

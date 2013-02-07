@@ -3,16 +3,17 @@ package com.dbraillon.tetris;
 import java.util.Random;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 
 public class Piece {
 
-	public Cube[] pieces;
+	public Cube[] cubes;
 	public int piece;
 	public int position;
 	
 	public Piece() {
 		
-		pieces = new Cube[4];
+		cubes = new Cube[4];
 		
 		Random r = new Random();
 		int p = r.nextInt(7);
@@ -22,69 +23,69 @@ public class Piece {
 		switch(piece) {
 		case 0:
 			// O
-			pieces[0] = new Cube(4,-1, new Color(255, 255, 0));
-			pieces[1] = new Cube(4,0, new Color(255, 255, 0));
-			pieces[2] = new Cube(5,-1, new Color(255, 255, 0));
-			pieces[3] = new Cube(5,0, new Color(255, 255, 0));
+			cubes[0] = new Cube(5,2, new Color(255, 255, 0), false);
+			cubes[1] = new Cube(5,3, new Color(255, 255, 0), false);
+			cubes[2] = new Cube(6,2, new Color(255, 255, 0), false);
+			cubes[3] = new Cube(6,3, new Color(255, 255, 0), false);
 			break;
 		case 1:
 			// T
-			pieces[0] = new Cube(4,-2, new Color(0, 255, 255));
-			pieces[1] = new Cube(4,-1, new Color(0, 255, 255));
-			pieces[2] = new Cube(4,0, new Color(0, 255, 255));
-			pieces[3] = new Cube(5,-1, new Color(0, 255, 255));
+			cubes[0] = new Cube(5,1, new Color(0, 255, 255), false);
+			cubes[1] = new Cube(5,2, new Color(0, 255, 255), false);
+			cubes[2] = new Cube(5,3, new Color(0, 255, 255), false);
+			cubes[3] = new Cube(6,2, new Color(0, 255, 255), false);
 			break;
 		case 2:
 			// I
-			pieces[0] = new Cube(5,-3, new Color(255, 0, 255));
-			pieces[1] = new Cube(5,-2, new Color(255, 0, 255));
-			pieces[2] = new Cube(5,-1, new Color(255, 0, 255));
-			pieces[3] = new Cube(5,0, new Color(255, 0, 255));
+			cubes[0] = new Cube(6,0, new Color(255, 0, 255), false);
+			cubes[1] = new Cube(6,1, new Color(255, 0, 255), false);
+			cubes[2] = new Cube(6,2, new Color(255, 0, 255), false);
+			cubes[3] = new Cube(6,3, new Color(255, 0, 255), false);
 			break;
 		case 3:
 			// L
-			pieces[0] = new Cube(4,-2, new Color(255, 127, 0));
-			pieces[1] = new Cube(4,-1, new Color(255, 127, 0));
-			pieces[2] = new Cube(4,0, new Color(255, 127, 0));
-			pieces[3] = new Cube(5,0, new Color(255, 127, 0));
+			cubes[0] = new Cube(5,1, new Color(255, 127, 0), false);
+			cubes[1] = new Cube(5,2, new Color(255, 127, 0), false);
+			cubes[2] = new Cube(5,3, new Color(255, 127, 0), false);
+			cubes[3] = new Cube(6,3, new Color(255, 127, 0), false);
 			break;
 		case 4:
 			// J
-			pieces[0] = new Cube(5,-2, new Color(0, 0, 255));
-			pieces[1] = new Cube(5,-1, new Color(0, 0, 255));
-			pieces[2] = new Cube(5,0, new Color(0, 0, 255));
-			pieces[3] = new Cube(4,0, new Color(0, 0, 255));
+			cubes[0] = new Cube(6,1, new Color(0, 0, 255), false);
+			cubes[1] = new Cube(6,2, new Color(0, 0, 255), false);
+			cubes[2] = new Cube(6,3, new Color(0, 0, 255), false);
+			cubes[3] = new Cube(5,3, new Color(0, 0, 255), false);
 			break;
 		case 5:
 			// Z
-			pieces[0] = new Cube(5,-2, new Color(255, 0, 0));
-			pieces[1] = new Cube(5,-1, new Color(255, 0, 0));
-			pieces[2] = new Cube(4,-1, new Color(255, 0, 0));
-			pieces[3] = new Cube(4,0, new Color(255, 0, 0));
+			cubes[0] = new Cube(6,1, new Color(255, 0, 0), false);
+			cubes[1] = new Cube(6,2, new Color(255, 0, 0), false);
+			cubes[2] = new Cube(5,2, new Color(255, 0, 0), false);
+			cubes[3] = new Cube(5,3, new Color(255, 0, 0), false);
 			break;
 		case 6:
 			// S
-			pieces[0] = new Cube(4,-2, new Color(0, 255, 0));
-			pieces[1] = new Cube(4,-1, new Color(0, 255, 0));
-			pieces[2] = new Cube(5,-1, new Color(0, 255, 0));
-			pieces[3] = new Cube(5,0, new Color(0, 255, 0));
+			cubes[0] = new Cube(5,1, new Color(0, 255, 0), false);
+			cubes[1] = new Cube(5,2, new Color(0, 255, 0), false);
+			cubes[2] = new Cube(6,2, new Color(0, 255, 0), false);
+			cubes[3] = new Cube(6,3, new Color(0, 255, 0), false);
 			break;
 		}
 	}
 	
 	public void fall() {
 		
-		for(int i = 0; i < pieces.length; i++) {
+		for(int i = 0; i < cubes.length; i++) {
 			
-			pieces[i].fall();
+			cubes[i].fall();
 		}
 	}
 	
 	public void move(int move) {
 		
-		for(int i = 0; i < pieces.length; i++) {
+		for(int i = 0; i < cubes.length; i++) {
 			
-			pieces[i].move(move);
+			cubes[i].move(move);
 		}
 	}
 	
@@ -107,15 +108,15 @@ public class Piece {
 			
 			if(position == 0 || position == 2) {
 				
-				pieces[0].x++; pieces[0].y++;
-				pieces[2].x--; pieces[2].y--;
-				pieces[3].x -= tt; pieces[3].y += tt * t;
+				cubes[0].x++; cubes[0].y++;
+				cubes[2].x--; cubes[2].y--;
+				cubes[3].x -= tt; cubes[3].y += tt * t;
 			}
 			else if(position == 1 || position == 3) {
 				
-				pieces[0].x--; pieces[0].y--;
-				pieces[2].x++; pieces[2].y++;
-				pieces[3].x -= tt * t; pieces[3].y -= tt;
+				cubes[0].x--; cubes[0].y--;
+				cubes[2].x++; cubes[2].y++;
+				cubes[3].x -= tt * t; cubes[3].y -= tt;
 			}
 			
 			break;
@@ -124,15 +125,15 @@ public class Piece {
 			// I
 			if(position == 0 || position == 2) {
 				
-				pieces[0].x--; pieces[0].y++;
-				pieces[2].x++; pieces[2].y--;
-				pieces[3].x += 2; pieces[3].y -= 2;
+				cubes[0].x--; cubes[0].y++;
+				cubes[2].x++; cubes[2].y--;
+				cubes[3].x += 2; cubes[3].y -= 2;
 			}
 			else if(position == 1 || position == 3) {
 				
-				pieces[0].x++; pieces[0].y--;
-				pieces[2].x--; pieces[2].y++;
-				pieces[3].x -= 2; pieces[3].y += 2;
+				cubes[0].x++; cubes[0].y--;
+				cubes[2].x--; cubes[2].y++;
+				cubes[3].x -= 2; cubes[3].y += 2;
 			}
 			
 			break;
@@ -142,35 +143,35 @@ public class Piece {
 			
 			if(position == 0) {
 				
-				pieces[0].x++; pieces[0].y++;
-				pieces[2].x--; pieces[2].y--;
+				cubes[0].x++; cubes[0].y++;
+				cubes[2].x--; cubes[2].y--;
 				
-				if(turn) pieces[3].x -= 2;
-				else  	 pieces[3].y -= 2;
+				if(turn) cubes[3].x -= 2;
+				else  	 cubes[3].y -= 2;
 			}
 			else if(position == 1) {
 				
-				pieces[0].x--; pieces[0].y--;
-				pieces[2].x++; pieces[2].y++;
+				cubes[0].x--; cubes[0].y--;
+				cubes[2].x++; cubes[2].y++;
 				
-				if(turn) pieces[3].y -= 2;
-				else	 pieces[3].x += 2;
+				if(turn) cubes[3].y -= 2;
+				else	 cubes[3].x += 2;
 			}
 			else if(position == 2) {
 				
-				pieces[0].x++; pieces[0].y++;
-				pieces[2].x--; pieces[2].y--;
+				cubes[0].x++; cubes[0].y++;
+				cubes[2].x--; cubes[2].y--;
 				
-				if(turn) pieces[3].x += 2;
-				else	 pieces[3].y += 2;
+				if(turn) cubes[3].x += 2;
+				else	 cubes[3].y += 2;
 			}
 			else if(position == 3) {
 				
-				pieces[0].x--; pieces[0].y--;
-				pieces[2].x++; pieces[2].y++;
+				cubes[0].x--; cubes[0].y--;
+				cubes[2].x++; cubes[2].y++;
 				
-				if(turn) pieces[3].y += 2;
-				else	 pieces[3].x -= 2;
+				if(turn) cubes[3].y += 2;
+				else	 cubes[3].x -= 2;
 			}
 			
 			break;
@@ -180,35 +181,35 @@ public class Piece {
 			
 			if(position == 0) {
 				
-				pieces[0].x++; pieces[0].y++;
-				pieces[2].x--; pieces[2].y--;
+				cubes[0].x++; cubes[0].y++;
+				cubes[2].x--; cubes[2].y--;
 				
-				if(turn) pieces[3].y -= 2;
-				else	 pieces[3].x += 2;
+				if(turn) cubes[3].y -= 2;
+				else	 cubes[3].x += 2;
 			}
 			else if(position == 1) {
 				
-				pieces[0].x--; pieces[0].y--;
-				pieces[2].x++; pieces[2].y++;
+				cubes[0].x--; cubes[0].y--;
+				cubes[2].x++; cubes[2].y++;
 				
-				if(turn) pieces[3].x += 2;
-				else	 pieces[3].y += 2;
+				if(turn) cubes[3].x += 2;
+				else	 cubes[3].y += 2;
 			}
 			else if(position == 2) {
 				
-				pieces[0].x++; pieces[0].y++;
-				pieces[2].x--; pieces[2].y--;
+				cubes[0].x++; cubes[0].y++;
+				cubes[2].x--; cubes[2].y--;
 				
-				if(turn) pieces[3].y += 2;
-				else	 pieces[3].x -= 2;
+				if(turn) cubes[3].y += 2;
+				else	 cubes[3].x -= 2;
 			}
 			else if(position == 3) {
 				
-				pieces[0].x--; pieces[0].y--;
-				pieces[2].x++; pieces[2].y++;
+				cubes[0].x--; cubes[0].y--;
+				cubes[2].x++; cubes[2].y++;
 				
-				if(turn) pieces[3].x -= 2;
-				else	 pieces[3].y -= 2;
+				if(turn) cubes[3].x -= 2;
+				else	 cubes[3].y -= 2;
 			}
 			
 			break;
@@ -221,18 +222,18 @@ public class Piece {
 				//  0    
 				// 21 -> 01
 				// 3      23
-				pieces[0].x--; pieces[0].y++;
-				pieces[2].x++; pieces[2].y++;
-				pieces[3].x += 2;
+				cubes[0].x--; cubes[0].y++;
+				cubes[2].x++; cubes[2].y++;
+				cubes[3].x += 2;
 				break;
 			case 1:
 			case 3:
 				//         0
 				// 01  -> 21
 				//  23	  3
-				pieces[0].x++; pieces[0].y--;
-				pieces[2].x--; pieces[2].y--;
-				pieces[3].x -= 2;
+				cubes[0].x++; cubes[0].y--;
+				cubes[2].x--; cubes[2].y--;
+				cubes[3].x -= 2;
 				break;
 			}
 			break;
@@ -244,23 +245,31 @@ public class Piece {
 				// 0      
 				// 12 ->  10
 				//  3    32
-				pieces[0].x++; pieces[0].y++;
-				pieces[2].x--; pieces[2].y++;
-				pieces[3].x -= 2;
+				cubes[0].x++; cubes[0].y++;
+				cubes[2].x--; cubes[2].y++;
+				cubes[3].x -= 2;
 				break;
 			case 1:
 			case 3:
 				//         0
 				//  10  -> 12
 				// 32	  	3
-				pieces[0].x--; pieces[0].y--;
-				pieces[2].x++; pieces[2].y--;
-				pieces[3].x += 2;
+				cubes[0].x--; cubes[0].y--;
+				cubes[2].x++; cubes[2].y--;
+				cubes[3].x += 2;
 				break;
 			}
 			break;
 		}
 		
 		position = (turn) ? ((position == 3) ? 0 : position + 1) : ((position == 0) ? 3 : position - 1);
+	}
+
+	public void drawPiece(Graphics graphics) {
+		
+		for(Cube cube : cubes) {
+			
+			cube.drawCube(graphics);
+		}
 	}
 }
