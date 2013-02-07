@@ -5,21 +5,20 @@ import org.newdawn.slick.Graphics;
 
 public class Cube {
 
-	public static final int SIZE_CLIP = 24;
+	public static final int SIZE_CLIP = 32;
 	
+	private int x, y;
+	private Color color;
+	private boolean isWall, isEmpty;
 	
-	public int x, y;
-	public Color color;
-	public boolean isWall;
-	
-	public Cube(int x, int y, Color color, boolean isWall) {
+	public Cube(int x, int y, Color color, boolean isWall, boolean isEmpty) {
 		
 		this.x = x;
 		this.y = y;
 		this.color = color;
 		this.isWall = isWall;
+		this.isEmpty = isEmpty;
 	}
-	
 	
 	public void fall() {
 		
@@ -39,5 +38,35 @@ public class Cube {
 		graphics.setColor(color.darker());
 		graphics.drawRect(10 + x * SIZE_CLIP + 1, 32 + y * SIZE_CLIP + 1, SIZE_CLIP - 3, SIZE_CLIP - 3);
 		graphics.drawRect(10 + x * SIZE_CLIP, 32 + y * SIZE_CLIP, SIZE_CLIP - 1, SIZE_CLIP - 1);
+	}
+	
+	public int getX() {
+		
+		return x;
+	}
+	
+	public void addX(int value) {
+		
+		x += value;
+	}
+	
+	public int getY() {
+		
+		return y;
+	}
+	
+	public void addY(int value) {
+		
+		y += value;
+	}
+	
+	public boolean isWall() {
+		
+		return isWall;
+	}
+	
+	public boolean isEmpty() {
+		
+		return isEmpty;
 	}
 }

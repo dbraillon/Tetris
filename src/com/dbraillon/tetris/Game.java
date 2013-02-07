@@ -68,6 +68,7 @@ public class Game extends BasicGame {
 		AppGameContainer app = new AppGameContainer(new Game("Tétris2d"));
 		app.setDisplayMode(Game.WIDTH_SCREEN, Game.HEIGHT_SCREEN, false);
 		app.setTargetFrameRate(30);
+		
 		app.start();
 	}
 }

@@ -5,7 +5,7 @@ import org.newdawn.slick.Graphics;
 
 public class Field {
 
-	public static final int HEIGHT_FIELD = 22;
+	public static final int HEIGHT_FIELD = 20;
 	public static final int WIDTH_FIELD = 10;
 	
 	public static final int HEIGHT_TOTAL = HEIGHT_FIELD + 4;
@@ -25,7 +25,7 @@ public class Field {
 				
 				if(x == 0 || x == WIDTH_TOTAL-1 || y == 2 || y == HEIGHT_TOTAL-1) {
 					
-					_cubes[x][y] = new Cube(x, y, DARK_GREY_COLOR, true);
+					_cubes[x][y] = new Cube(x, y, DARK_GREY_COLOR, true, false);
 				}
 			}
 		}
@@ -68,9 +68,9 @@ public class Field {
 		
 		for(Cube cube : piece.cubes) {
 			
-			if(_cubes[cube.x][cube.y] != null) {
+			if(_cubes[cube.getX()][cube.getY()] != null) {
 				
-				_cubes[cube.x][cube.y] = null;
+				_cubes[cube.getX()][cube.getY()] = null;
 			}
 		}
 	}
@@ -79,7 +79,7 @@ public class Field {
 		
 		for(Cube cube : piece.cubes) {
 			
-			_cubes[cube.x][cube.y] = cube;
+			_cubes[cube.getX()][cube.getY()] = cube;
 		}
 	}
 

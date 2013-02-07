@@ -28,9 +28,9 @@ public class ItemController {
 		
 		for(Cube cube : piece.cubes) {
 			
-			if(field.getCube(cube.x, cube.y) != null) {
+			if(field.getCube(cube.getX(), cube.getY()) != null) {
 				
-				if(!field.getCube(cube.x, cube.y).isWall) {
+				if(!field.getCube(cube.getX(), cube.getY()).isWall()) {
 					
 					return false;
 				}
@@ -51,15 +51,15 @@ public class ItemController {
 		
 		for(Cube cube : piece.cubes) {
 			
-			if(cube.y + 1 >= Field.HEIGHT_TOTAL) {
+			if(cube.getY() + 1 >= Field.HEIGHT_TOTAL) {
 				
 				return false;
 			}
 			else {
 				
-				if(cube.y + 1 > 2) {
+				if(cube.getY() + 1 > 2) {
 					
-					if(field.getCube(cube.x, cube.y + 1) != null) {
+					if(field.getCube(cube.getX(), cube.getY() + 1) != null) {
 						
 						return false;
 					}
@@ -84,13 +84,13 @@ public class ItemController {
 		
 		for(Cube cube : piece.cubes) {
 			
-			if(cube.x + move >= Field.WIDTH_TOTAL || cube.x + move < 0) {
+			if(cube.getX() + move >= Field.WIDTH_TOTAL || cube.getX() + move < 0) {
 				
 				return false;
 			}
 			else {
 				
-				if(field.getCube(cube.x + move, cube.y) != null) {
+				if(field.getCube(cube.getX() + move, cube.getY()) != null) {
 				
 					return false;
 				}
@@ -128,9 +128,9 @@ public class ItemController {
 		
 		for(Cube cube : piece.cubes) {
 			
-			if(!ys.contains(cube.y)) {
+			if(!ys.contains(cube.getY())) {
 				
-				ys.add(cube.y);
+				ys.add(cube.getY());
 			}
 		}
 		
@@ -172,7 +172,7 @@ public class ItemController {
 		
 		for(Cube cube : piece.cubes) {
 			
-			if(cube.x >= Field.WIDTH_TOTAL-1 || cube.x < 1 || cube.y > Field.HEIGHT_TOTAL) {
+			if(cube.getX() >= Field.WIDTH_TOTAL-1 || cube.getX() < 1 || cube.getY() > Field.HEIGHT_TOTAL) {
 
 				piece.turn(!turn);
 				return false;

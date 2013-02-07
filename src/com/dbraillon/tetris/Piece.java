@@ -23,52 +23,52 @@ public class Piece {
 		switch(piece) {
 		case 0:
 			// O
-			cubes[0] = new Cube(5,2, new Color(255, 255, 0), false);
-			cubes[1] = new Cube(5,3, new Color(255, 255, 0), false);
-			cubes[2] = new Cube(6,2, new Color(255, 255, 0), false);
-			cubes[3] = new Cube(6,3, new Color(255, 255, 0), false);
+			cubes[0] = new Cube(5,0, new Color(255, 255, 0), false, false);
+			cubes[1] = new Cube(5,1, new Color(255, 255, 0), false, false);
+			cubes[2] = new Cube(6,0, new Color(255, 255, 0), false, false);
+			cubes[3] = new Cube(6,1, new Color(255, 255, 0), false, false);
 			break;
 		case 1:
 			// T
-			cubes[0] = new Cube(5,1, new Color(0, 255, 255), false);
-			cubes[1] = new Cube(5,2, new Color(0, 255, 255), false);
-			cubes[2] = new Cube(5,3, new Color(0, 255, 255), false);
-			cubes[3] = new Cube(6,2, new Color(0, 255, 255), false);
+			cubes[0] = new Cube(4,0, new Color(0, 255, 255), false, false);
+			cubes[1] = new Cube(5,0, new Color(0, 255, 255), false, false);
+			cubes[2] = new Cube(6,0, new Color(0, 255, 255), false, false);
+			cubes[3] = new Cube(5,1, new Color(0, 255, 255), false, false);
 			break;
 		case 2:
 			// I
-			cubes[0] = new Cube(6,0, new Color(255, 0, 255), false);
-			cubes[1] = new Cube(6,1, new Color(255, 0, 255), false);
-			cubes[2] = new Cube(6,2, new Color(255, 0, 255), false);
-			cubes[3] = new Cube(6,3, new Color(255, 0, 255), false);
+			cubes[0] = new Cube(4,0, new Color(255, 0, 255), false, false);
+			cubes[1] = new Cube(5,0, new Color(255, 0, 255), false, false);
+			cubes[2] = new Cube(6,0, new Color(255, 0, 255), false, false);
+			cubes[3] = new Cube(7,0, new Color(255, 0, 255), false, false);
 			break;
 		case 3:
 			// L
-			cubes[0] = new Cube(5,1, new Color(255, 127, 0), false);
-			cubes[1] = new Cube(5,2, new Color(255, 127, 0), false);
-			cubes[2] = new Cube(5,3, new Color(255, 127, 0), false);
-			cubes[3] = new Cube(6,3, new Color(255, 127, 0), false);
+			cubes[0] = new Cube(4,0, new Color(255, 127, 0), false, false);
+			cubes[1] = new Cube(5,0, new Color(255, 127, 0), false, false);
+			cubes[2] = new Cube(6,0, new Color(255, 127, 0), false, false);
+			cubes[3] = new Cube(4,1, new Color(255, 127, 0), false, false);
 			break;
 		case 4:
 			// J
-			cubes[0] = new Cube(6,1, new Color(0, 0, 255), false);
-			cubes[1] = new Cube(6,2, new Color(0, 0, 255), false);
-			cubes[2] = new Cube(6,3, new Color(0, 0, 255), false);
-			cubes[3] = new Cube(5,3, new Color(0, 0, 255), false);
+			cubes[0] = new Cube(4,0, new Color(0, 0, 255), false, false);
+			cubes[1] = new Cube(5,0, new Color(0, 0, 255), false, false);
+			cubes[2] = new Cube(6,0, new Color(0, 0, 255), false, false);
+			cubes[3] = new Cube(6,1, new Color(0, 0, 255), false, false);
 			break;
 		case 5:
 			// Z
-			cubes[0] = new Cube(6,1, new Color(255, 0, 0), false);
-			cubes[1] = new Cube(6,2, new Color(255, 0, 0), false);
-			cubes[2] = new Cube(5,2, new Color(255, 0, 0), false);
-			cubes[3] = new Cube(5,3, new Color(255, 0, 0), false);
+			cubes[0] = new Cube(4,0, new Color(255, 0, 0), false, false);
+			cubes[1] = new Cube(5,0, new Color(255, 0, 0), false, false);
+			cubes[2] = new Cube(5,1, new Color(255, 0, 0), false, false);
+			cubes[3] = new Cube(6,1, new Color(255, 0, 0), false, false);
 			break;
 		case 6:
 			// S
-			cubes[0] = new Cube(5,1, new Color(0, 255, 0), false);
-			cubes[1] = new Cube(5,2, new Color(0, 255, 0), false);
-			cubes[2] = new Cube(6,2, new Color(0, 255, 0), false);
-			cubes[3] = new Cube(6,3, new Color(0, 255, 0), false);
+			cubes[0] = new Cube(4,1, new Color(0, 255, 0), false, false);
+			cubes[1] = new Cube(5,1, new Color(0, 255, 0), false, false);
+			cubes[2] = new Cube(5,0, new Color(0, 255, 0), false, false);
+			cubes[3] = new Cube(6,0, new Color(0, 255, 0), false, false);
 			break;
 		}
 	}
@@ -108,15 +108,15 @@ public class Piece {
 			
 			if(position == 0 || position == 2) {
 				
-				cubes[0].x++; cubes[0].y++;
-				cubes[2].x--; cubes[2].y--;
-				cubes[3].x -= tt; cubes[3].y += tt * t;
+				cubes[0].addX(1); cubes[0].addY(1);
+				cubes[2].addX(-1); cubes[2].addY(-1);
+				cubes[3].addX(-tt); cubes[3].addY(tt * t);
 			}
 			else if(position == 1 || position == 3) {
 				
-				cubes[0].x--; cubes[0].y--;
-				cubes[2].x++; cubes[2].y++;
-				cubes[3].x -= tt * t; cubes[3].y -= tt;
+				cubes[0].addX(-1); cubes[0].addY(-1);
+				cubes[2].addX(1); cubes[2].addY(1);
+				cubes[3].addX(-tt * t); cubes[3].addY(-tt);
 			}
 			
 			break;
@@ -125,15 +125,15 @@ public class Piece {
 			// I
 			if(position == 0 || position == 2) {
 				
-				cubes[0].x--; cubes[0].y++;
-				cubes[2].x++; cubes[2].y--;
-				cubes[3].x += 2; cubes[3].y -= 2;
+				cubes[0].addX(-1); cubes[0].addY(1);
+				cubes[2].addX(1); cubes[2].addY(-1);
+				cubes[3].addX(2); cubes[3].addY(-2);
 			}
 			else if(position == 1 || position == 3) {
 				
-				cubes[0].x++; cubes[0].y--;
-				cubes[2].x--; cubes[2].y++;
-				cubes[3].x -= 2; cubes[3].y += 2;
+				cubes[0].addX(1); cubes[0].addY(-1);
+				cubes[2].addX(-1); cubes[2].addY(1);
+				cubes[3].addX(-2); cubes[3].addY(2);
 			}
 			
 			break;
@@ -143,35 +143,35 @@ public class Piece {
 			
 			if(position == 0) {
 				
-				cubes[0].x++; cubes[0].y++;
-				cubes[2].x--; cubes[2].y--;
+				cubes[0].addX(1); cubes[0].addY(1);
+				cubes[2].addX(-1); cubes[2].addY(-1);
 				
-				if(turn) cubes[3].x -= 2;
-				else  	 cubes[3].y -= 2;
+				if(turn) cubes[3].addX(-2);
+				else  	 cubes[3].addY(-2);
 			}
 			else if(position == 1) {
 				
-				cubes[0].x--; cubes[0].y--;
-				cubes[2].x++; cubes[2].y++;
+				cubes[0].addX(-1); cubes[0].addY(-1);
+				cubes[2].addX(1); cubes[2].addY(1);
 				
-				if(turn) cubes[3].y -= 2;
-				else	 cubes[3].x += 2;
+				if(turn) cubes[3].addY(-2);
+				else	 cubes[3].addX(2);
 			}
 			else if(position == 2) {
 				
-				cubes[0].x++; cubes[0].y++;
-				cubes[2].x--; cubes[2].y--;
+				cubes[0].addX(1); cubes[0].addY(1);
+				cubes[2].addX(-1); cubes[2].addY(-1);
 				
-				if(turn) cubes[3].x += 2;
-				else	 cubes[3].y += 2;
+				if(turn) cubes[3].addX(2);
+				else	 cubes[3].addY(2);
 			}
 			else if(position == 3) {
 				
-				cubes[0].x--; cubes[0].y--;
-				cubes[2].x++; cubes[2].y++;
+				cubes[0].addX(-1); cubes[0].addY(-1);
+				cubes[2].addX(1); cubes[2].addY(1);
 				
-				if(turn) cubes[3].y += 2;
-				else	 cubes[3].x -= 2;
+				if(turn) cubes[3].addY(2);
+				else	 cubes[3].addX(-2);
 			}
 			
 			break;
@@ -181,35 +181,35 @@ public class Piece {
 			
 			if(position == 0) {
 				
-				cubes[0].x++; cubes[0].y++;
-				cubes[2].x--; cubes[2].y--;
+				cubes[0].addX(1); cubes[0].addY(1);
+				cubes[2].addX(-1); cubes[2].addY(-1);
 				
-				if(turn) cubes[3].y -= 2;
-				else	 cubes[3].x += 2;
+				if(turn) cubes[3].addY(-2);
+				else	 cubes[3].addX(2);
 			}
 			else if(position == 1) {
 				
-				cubes[0].x--; cubes[0].y--;
-				cubes[2].x++; cubes[2].y++;
+				cubes[0].addX(-1); cubes[0].addY(-1);
+				cubes[2].addX(1); cubes[2].addY(1);
 				
-				if(turn) cubes[3].x += 2;
-				else	 cubes[3].y += 2;
+				if(turn) cubes[3].addX(2);
+				else	 cubes[3].addY(2);
 			}
 			else if(position == 2) {
 				
-				cubes[0].x++; cubes[0].y++;
-				cubes[2].x--; cubes[2].y--;
+				cubes[0].addX(1); cubes[0].addY(1);
+				cubes[2].addX(-1); cubes[2].addY(-1);
 				
-				if(turn) cubes[3].y += 2;
-				else	 cubes[3].x -= 2;
+				if(turn) cubes[3].addY(2);
+				else	 cubes[3].addX(-2);
 			}
 			else if(position == 3) {
 				
-				cubes[0].x--; cubes[0].y--;
-				cubes[2].x++; cubes[2].y++;
+				cubes[0].addX(-1); cubes[0].addY(-1);
+				cubes[2].addX(1); cubes[2].addY(1);
 				
-				if(turn) cubes[3].x -= 2;
-				else	 cubes[3].y -= 2;
+				if(turn) cubes[3].addX(-2);
+				else	 cubes[3].addY(-2);
 			}
 			
 			break;
@@ -222,18 +222,18 @@ public class Piece {
 				//  0    
 				// 21 -> 01
 				// 3      23
-				cubes[0].x--; cubes[0].y++;
-				cubes[2].x++; cubes[2].y++;
-				cubes[3].x += 2;
+				cubes[0].addX(-1); cubes[0].addY(1);
+				cubes[2].addX(1); cubes[2].addY(1);
+				cubes[3].addX(2);
 				break;
 			case 1:
 			case 3:
 				//         0
 				// 01  -> 21
 				//  23	  3
-				cubes[0].x++; cubes[0].y--;
-				cubes[2].x--; cubes[2].y--;
-				cubes[3].x -= 2;
+				cubes[0].addX(1); cubes[0].addY(-1);
+				cubes[2].addX(-1); cubes[2].addY(-1);
+				cubes[3].addX(-2);
 				break;
 			}
 			break;
@@ -245,18 +245,18 @@ public class Piece {
 				// 0      
 				// 12 ->  10
 				//  3    32
-				cubes[0].x++; cubes[0].y++;
-				cubes[2].x--; cubes[2].y++;
-				cubes[3].x -= 2;
+				cubes[0].addX(1); cubes[0].addY(1);
+				cubes[2].addX(-1); cubes[2].addY(1);
+				cubes[3].addX(-2);
 				break;
 			case 1:
 			case 3:
 				//         0
 				//  10  -> 12
 				// 32	  	3
-				cubes[0].x--; cubes[0].y--;
-				cubes[2].x++; cubes[2].y--;
-				cubes[3].x += 2;
+				cubes[0].addX(-1); cubes[0].addY(-1);
+				cubes[2].addX(1); cubes[2].addY(-1);
+				cubes[3].addX(2);
 				break;
 			}
 			break;

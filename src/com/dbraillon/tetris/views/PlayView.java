@@ -103,7 +103,7 @@ public class PlayView {
 			if(!_itemController.fall(_field, _piece)) {
 
 				for(Cube cItem : _piece.cubes) {
-					_field.setCube(cItem, cItem.x, cItem.y);
+					_field.setCube(cItem, cItem.getX(), cItem.getY());
 				}
 				
 				_score += _itemController.removeLine(_field, _piece);
