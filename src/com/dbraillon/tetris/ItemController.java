@@ -161,12 +161,12 @@ public class ItemController {
 		return s;
 	}
 
-	public boolean turn(boolean turn, Field field, Piece piece) {
+	public boolean turn(int turn, Field field, Piece piece) {
 		
 		piece.turn(turn);
 		if(!verify(field, piece)) {
 			
-			piece.turn(!turn);
+			piece.turn(Piece.TURN_LEFT);
 			return false;
 		}
 		
@@ -174,7 +174,7 @@ public class ItemController {
 			
 			if(cube.getX() >= Field.WIDTH_TOTAL-1 || cube.getX() < 1 || cube.getY() > Field.HEIGHT_TOTAL) {
 
-				piece.turn(!turn);
+				piece.turn(Piece.TURN_LEFT);
 				return false;
 			}
 		}

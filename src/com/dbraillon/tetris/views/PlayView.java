@@ -82,9 +82,13 @@ public class PlayView {
 			_itemController.move(1, _field, _piece);
 			_moveTimer = 0;
 		}
-		else if(input.isKeyPressed(Keyboard.KEY_UP)) {
+		else if(input.isKeyPressed(Keyboard.KEY_K)) {
 			
-			_itemController.turn(true, _field, _piece);
+			_itemController.turn(Piece.TURN_LEFT, _field, _piece);
+		}
+		else if(input.isKeyPressed(Keyboard.KEY_L)) {
+			
+			_itemController.turn(Piece.TURN_RIGHT, _field, _piece);
 		}
 		else if(input.isKeyDown(Keyboard.KEY_DOWN) && _moveTimer >= _speedMove) {
 			
@@ -119,7 +123,7 @@ public class PlayView {
 		}
 		else {
 			
-			_fallTimer++;
+			//_fallTimer++;
 		}
 		
 		if(_moveTimer < _speedMove) {
