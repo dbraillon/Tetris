@@ -50,14 +50,14 @@ public class Piece {
 			cubes[0] = new Cube(4,1, new Color(255, 127, 0), false, false);
 			cubes[1] = new Cube(5,1, new Color(255, 127, 0), false, false);
 			cubes[2] = new Cube(6,1, new Color(255, 127, 0), false, false);
-			cubes[3] = new Cube(4,0, new Color(255, 127, 0), false, false);
+			cubes[3] = new Cube(6,0, new Color(255, 127, 0), false, false);
 			break;
 		case 4:
 			// J
 			cubes[0] = new Cube(4,1, new Color(0, 0, 255), false, false);
 			cubes[1] = new Cube(5,1, new Color(0, 0, 255), false, false);
 			cubes[2] = new Cube(6,1, new Color(0, 0, 255), false, false);
-			cubes[3] = new Cube(6,0, new Color(0, 0, 255), false, false);
+			cubes[3] = new Cube(4,0, new Color(0, 0, 255), false, false);
 			break;
 		case 5:
 			// Z
@@ -197,162 +197,415 @@ public class Piece {
 				
 				if(rotation == TURN_RIGHT) {
 				
+					cubes[0].addX( 2); cubes[0].addY(-1);
+					cubes[1].addX( 1); cubes[1].addY( 0);
+					cubes[2].addX( 0); cubes[2].addY( 1);
+					cubes[3].addX(-1); cubes[3].addY( 2);
+					
+					position = 1;
 				}
 				else if(rotation == TURN_LEFT) {
 					
+					cubes[0].addX( 1); cubes[0].addY( 2);
+					cubes[1].addX( 0); cubes[1].addY( 1);
+					cubes[2].addX(-1); cubes[2].addY( 0);
+					cubes[3].addX(-2); cubes[3].addY(-1);
+					
+					position = 3;
 				}
 			}
 			else if(position == 1) {
 				
 				if(rotation == TURN_RIGHT) {
 					
+					cubes[0].addX( 1); cubes[0].addY( 2);
+					cubes[1].addX( 0); cubes[1].addY( 1);
+					cubes[2].addX(-1); cubes[2].addY( 0);
+					cubes[3].addX(-2); cubes[3].addY(-1);
+					
+					position = 2;
 				}
 				else if(rotation == TURN_LEFT) {
 					
+					cubes[0].addX(-2); cubes[0].addY( 1);
+					cubes[1].addX(-1); cubes[1].addY( 0);
+					cubes[2].addX( 0); cubes[2].addY(-1);
+					cubes[3].addX( 1); cubes[3].addY(-2);
+					
+					position = 0;
 				}
 			}
 			else if(position == 2) {
 				
 				if(rotation == TURN_RIGHT) {
 					
+					cubes[0].addX(-2); cubes[0].addY( 1);
+					cubes[1].addX(-1); cubes[1].addY( 0);
+					cubes[2].addX( 0); cubes[2].addY(-1);
+					cubes[3].addX( 1); cubes[3].addY(-2);
+					
+					position = 3;
 				}
 				else if(rotation == TURN_LEFT) {
 					
+					cubes[0].addX(-1); cubes[0].addY(-2);
+					cubes[1].addX( 0); cubes[1].addY(-1);
+					cubes[2].addX( 1); cubes[2].addY( 0);
+					cubes[3].addX( 2); cubes[3].addY( 1);
+					
+					position = 1;
 				}
 			}
 			else if(position == 3) {
 				
 				if(rotation == TURN_RIGHT) {
 					
+					cubes[0].addX(-1); cubes[0].addY(-2);
+					cubes[1].addX( 0); cubes[1].addY(-1);
+					cubes[2].addX( 1); cubes[2].addY( 0);
+					cubes[3].addX( 2); cubes[3].addY( 1);
+					
+					position = 0;
 				}
 				else if(rotation == TURN_LEFT) {
 					
+					cubes[0].addX( 2); cubes[0].addY(-1);
+					cubes[1].addX( 1); cubes[1].addY( 0);
+					cubes[2].addX( 0); cubes[2].addY( 1);
+					cubes[3].addX(-1); cubes[3].addY( 2);
+					
+					position = 2;
 				}
 			}
 			
 			break;
 			
 		case 3:
-			// L
 			
+			// L
 			if(position == 0) {
 				
-				cubes[0].addX(1); cubes[0].addY(1);
-				cubes[2].addX(-1); cubes[2].addY(-1);
+				if(rotation == TURN_RIGHT) {
 				
-				if(turn) cubes[3].addX(-2);
-				else  	 cubes[3].addY(-2);
+					cubes[0].addX( 1); cubes[0].addY(-1);
+					cubes[2].addX(-1); cubes[2].addY( 1);
+					cubes[3].addX( 0); cubes[3].addY( 2);
+					
+					position = 1;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX( 1); cubes[0].addY( 1);
+					cubes[2].addX(-1); cubes[2].addY(-1);
+					cubes[3].addX(-2); cubes[3].addY( 0);
+					
+					position = 3;
+				}
 			}
 			else if(position == 1) {
 				
-				cubes[0].addX(-1); cubes[0].addY(-1);
-				cubes[2].addX(1); cubes[2].addY(1);
-				
-				if(turn) cubes[3].addY(-2);
-				else	 cubes[3].addX(2);
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX( 1); cubes[0].addY( 1);
+					cubes[2].addX(-1); cubes[2].addY(-1);
+					cubes[3].addX(-2); cubes[3].addY( 0);
+					
+					position = 2;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX(-1); cubes[0].addY( 1);
+					cubes[2].addX( 1); cubes[2].addY(-1);
+					cubes[3].addX( 0); cubes[3].addY(-2);
+					
+					position = 0;
+				}
 			}
 			else if(position == 2) {
 				
-				cubes[0].addX(1); cubes[0].addY(1);
-				cubes[2].addX(-1); cubes[2].addY(-1);
-				
-				if(turn) cubes[3].addX(2);
-				else	 cubes[3].addY(2);
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX(-1); cubes[0].addY( 1);
+					cubes[2].addX( 1); cubes[2].addY(-1);
+					cubes[3].addX( 0); cubes[3].addY(-2);
+					
+					position = 3;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX(-1); cubes[0].addY(-1);
+					cubes[2].addX( 1); cubes[2].addY( 1);
+					cubes[3].addX( 2); cubes[3].addY( 0);
+					
+					position = 1;
+				}
 			}
 			else if(position == 3) {
 				
-				cubes[0].addX(-1); cubes[0].addY(-1);
-				cubes[2].addX(1); cubes[2].addY(1);
-				
-				if(turn) cubes[3].addY(2);
-				else	 cubes[3].addX(-2);
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX(-1); cubes[0].addY(-1);
+					cubes[2].addX( 1); cubes[2].addY( 1);
+					cubes[3].addX( 2); cubes[3].addY( 0);
+					
+					position = 0;
+				}
+				else if(rotation == TURN_LEFT) {
+
+					cubes[0].addX( 1); cubes[0].addY(-1);
+					cubes[2].addX(-1); cubes[2].addY( 1);
+					cubes[3].addX( 0); cubes[3].addY( 2);
+					
+					position = 2;
+				}
 			}
 			
 			break;
 			
 		case 4:
-			// J
 			
+			// J
 			if(position == 0) {
 				
-				cubes[0].addX(1); cubes[0].addY(1);
-				cubes[2].addX(-1); cubes[2].addY(-1);
+				if(rotation == TURN_RIGHT) {
 				
-				if(turn) cubes[3].addY(-2);
-				else	 cubes[3].addX(2);
+					cubes[0].addX( 1); cubes[0].addY(-1);
+					cubes[2].addX(-1); cubes[2].addY( 1);
+					cubes[3].addX( 2); cubes[3].addY( 0);
+					
+					position = 1;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX( 1); cubes[0].addY( 1);
+					cubes[2].addX(-1); cubes[2].addY(-1);
+					cubes[3].addX( 0); cubes[3].addY( 2);
+					
+					position = 3;
+				}
 			}
 			else if(position == 1) {
 				
-				cubes[0].addX(-1); cubes[0].addY(-1);
-				cubes[2].addX(1); cubes[2].addY(1);
-				
-				if(turn) cubes[3].addX(2);
-				else	 cubes[3].addY(2);
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX( 1); cubes[0].addY( 1);
+					cubes[2].addX(-1); cubes[2].addY(-1);
+					cubes[3].addX( 0); cubes[3].addY( 2);
+					
+					position = 2;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX(-1); cubes[0].addY( 1);
+					cubes[2].addX( 1); cubes[2].addY(-1);
+					cubes[3].addX(-2); cubes[3].addY( 0);
+					
+					position = 0;
+				}
 			}
 			else if(position == 2) {
 				
-				cubes[0].addX(1); cubes[0].addY(1);
-				cubes[2].addX(-1); cubes[2].addY(-1);
-				
-				if(turn) cubes[3].addY(2);
-				else	 cubes[3].addX(-2);
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX(-1); cubes[0].addY( 1);
+					cubes[2].addX( 1); cubes[2].addY(-1);
+					cubes[3].addX(-2); cubes[3].addY( 0);
+					
+					position = 3;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX(-1); cubes[0].addY(-1);
+					cubes[2].addX( 1); cubes[2].addY( 1);
+					cubes[3].addX( 0); cubes[3].addY(-2);
+					
+					position = 1;
+				}
 			}
 			else if(position == 3) {
 				
-				cubes[0].addX(-1); cubes[0].addY(-1);
-				cubes[2].addX(1); cubes[2].addY(1);
-				
-				if(turn) cubes[3].addX(-2);
-				else	 cubes[3].addY(-2);
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX(-1); cubes[0].addY(-1);
+					cubes[2].addX( 1); cubes[2].addY( 1);
+					cubes[3].addX( 0); cubes[3].addY(-2);
+					
+					position = 0;
+				}
+				else if(rotation == TURN_LEFT) {
+
+					cubes[0].addX( 1); cubes[0].addY(-1);
+					cubes[2].addX(-1); cubes[2].addY( 1);
+					cubes[3].addX( 2); cubes[3].addY( 0);
+					
+					position = 2;
+				}
 			}
 			
 			break;
 			
 		case 5:
+			
 			// Z
-			switch(position) {
-			case 0:
-			case 2:
-				//  0    
-				// 21 -> 01
-				// 3      23
-				cubes[0].addX(-1); cubes[0].addY(1);
-				cubes[2].addX(1); cubes[2].addY(1);
-				cubes[3].addX(2);
-				break;
-			case 1:
-			case 3:
-				//         0
-				// 01  -> 21
-				//  23	  3
-				cubes[0].addX(1); cubes[0].addY(-1);
-				cubes[2].addX(-1); cubes[2].addY(-1);
-				cubes[3].addX(-2);
-				break;
+			if(position == 0) {
+				
+				if(rotation == TURN_RIGHT) {
+				
+					cubes[0].addX( 2); cubes[0].addY( 0);
+					cubes[1].addX( 1); cubes[1].addY( 1);
+					cubes[3].addX(-1); cubes[3].addY( 1);
+					
+					position = 1;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX( 0); cubes[0].addY( 2);
+					cubes[1].addX(-1); cubes[1].addY( 1);
+					cubes[3].addX(-1); cubes[3].addY(-1);
+					
+					position = 3;
+				}
 			}
+			else if(position == 1) {
+				
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX( 0); cubes[0].addY( 2);
+					cubes[1].addX(-1); cubes[1].addY( 1);
+					cubes[3].addX(-1); cubes[3].addY(-1);
+					
+					position = 2;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX(-2); cubes[0].addY( 0);
+					cubes[1].addX(-1); cubes[1].addY(-1);
+					cubes[3].addX( 1); cubes[3].addY(-1);
+					
+					position = 0;
+				}
+			}
+			else if(position == 2) {
+				
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX(-2); cubes[0].addY( 0);
+					cubes[1].addX(-1); cubes[1].addY(-1);
+					cubes[3].addX( 1); cubes[3].addY(-1);
+					
+					position = 3;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX( 0); cubes[0].addY(-2);
+					cubes[1].addX( 1); cubes[1].addY(-1);
+					cubes[3].addX( 1); cubes[3].addY( 1);
+					
+					position = 1;
+				}
+			}
+			else if(position == 3) {
+				
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX( 0); cubes[0].addY(-2);
+					cubes[1].addX( 1); cubes[1].addY(-1);
+					cubes[3].addX( 1); cubes[3].addY( 1);
+					
+					position = 0;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX( 2); cubes[0].addY( 0);
+					cubes[1].addX( 1); cubes[1].addY( 1);
+					cubes[3].addX(-1); cubes[3].addY( 1);
+					
+					position = 2;
+				}
+			}
+			
 			break;
+			
 		case 6:
+			
 			// S
-			switch(position) {
-			case 0:
-			case 2:
-				// 0      
-				// 12 ->  10
-				//  3    32
-				cubes[0].addX(1); cubes[0].addY(1);
-				cubes[2].addX(-1); cubes[2].addY(1);
-				cubes[3].addX(-2);
-				break;
-			case 1:
-			case 3:
-				//         0
-				//  10  -> 12
-				// 32	  	3
-				cubes[0].addX(-1); cubes[0].addY(-1);
-				cubes[2].addX(1); cubes[2].addY(-1);
-				cubes[3].addX(2);
-				break;
+			if(position == 0) {
+				
+				if(rotation == TURN_RIGHT) {
+				
+					cubes[0].addX( 1); cubes[0].addY(-1);
+					cubes[2].addX( 1); cubes[2].addY( 1);
+					cubes[3].addX( 0); cubes[3].addY( 2);
+					
+					position = 1;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX( 1); cubes[0].addY( 1);
+					cubes[2].addX(-1); cubes[2].addY( 1);
+					cubes[3].addX(-2); cubes[3].addY( 0);
+					
+					position = 3;
+				}
 			}
+			else if(position == 1) {
+				
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX( 1); cubes[0].addY( 1);
+					cubes[2].addX(-1); cubes[2].addY( 1);
+					cubes[3].addX(-2); cubes[3].addY( 0);
+					
+					position = 2;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX(-1); cubes[0].addY( 1);
+					cubes[2].addX(-1); cubes[2].addY(-1);
+					cubes[3].addX( 0); cubes[3].addY(-2);
+					
+					position = 0;
+				}
+			}
+			else if(position == 2) {
+				
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX(-1); cubes[0].addY( 1);
+					cubes[2].addX(-1); cubes[2].addY(-1);
+					cubes[3].addX( 0); cubes[3].addY(-2);
+					
+					position = 3;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX(-1); cubes[0].addY(-1);
+					cubes[2].addX( 1); cubes[2].addY(-1);
+					cubes[3].addX( 2); cubes[3].addY( 0);
+					
+					position = 1;
+				}
+			}
+			else if(position == 3) {
+				
+				if(rotation == TURN_RIGHT) {
+					
+					cubes[0].addX(-1); cubes[0].addY(-1);
+					cubes[2].addX( 1); cubes[2].addY(-1);
+					cubes[3].addX( 2); cubes[3].addY( 0);
+					
+					position = 0;
+				}
+				else if(rotation == TURN_LEFT) {
+					
+					cubes[0].addX( 1); cubes[0].addY(-1);
+					cubes[2].addX( 1); cubes[2].addY( 1);
+					cubes[3].addX( 0); cubes[3].addY( 2);
+					
+					position = 2;
+				}
+			}
+
 			break;
 		}
 	}
