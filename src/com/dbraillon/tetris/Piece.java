@@ -1,7 +1,5 @@
 package com.dbraillon.tetris;
 
-import java.util.Random;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
@@ -11,62 +9,58 @@ public class Piece {
 	public static final int TURN_LEFT  = -1;
 	
 	public Cube[] cubes;
-	public int piece;
+	public char piece;
 	public int position;
 	
-	public Piece() {
+	public Piece(char piece) {
 		
+		this.piece = piece;
 		cubes = new Cube[4];
-		
-		Random r = new Random();
-		int p = r.nextInt(7);
-		
-		piece = p;
-		position = 0;
+
 		switch(piece) {
-		case 0:
+		case 'O':
 			// O
 			cubes[0] = new Cube(5,0, new Color(255, 255, 0), false, false);
 			cubes[1] = new Cube(5,1, new Color(255, 255, 0), false, false);
 			cubes[2] = new Cube(6,0, new Color(255, 255, 0), false, false);
 			cubes[3] = new Cube(6,1, new Color(255, 255, 0), false, false);
 			break;
-		case 1:
+		case 'T':
 			// T
 			cubes[0] = new Cube(4,1, new Color(0, 255, 255), false, false);
 			cubes[1] = new Cube(5,1, new Color(0, 255, 255), false, false);
 			cubes[2] = new Cube(6,1, new Color(0, 255, 255), false, false);
 			cubes[3] = new Cube(5,0, new Color(0, 255, 255), false, false);
 			break;
-		case 2:
+		case 'I':
 			// I
 			cubes[0] = new Cube(4,0, new Color(255, 0, 255), false, false);
 			cubes[1] = new Cube(5,0, new Color(255, 0, 255), false, false);
 			cubes[2] = new Cube(6,0, new Color(255, 0, 255), false, false);
 			cubes[3] = new Cube(7,0, new Color(255, 0, 255), false, false);
 			break;
-		case 3:
+		case 'L':
 			// L
 			cubes[0] = new Cube(4,1, new Color(255, 127, 0), false, false);
 			cubes[1] = new Cube(5,1, new Color(255, 127, 0), false, false);
 			cubes[2] = new Cube(6,1, new Color(255, 127, 0), false, false);
 			cubes[3] = new Cube(6,0, new Color(255, 127, 0), false, false);
 			break;
-		case 4:
+		case 'J':
 			// J
 			cubes[0] = new Cube(4,1, new Color(0, 0, 255), false, false);
 			cubes[1] = new Cube(5,1, new Color(0, 0, 255), false, false);
 			cubes[2] = new Cube(6,1, new Color(0, 0, 255), false, false);
 			cubes[3] = new Cube(4,0, new Color(0, 0, 255), false, false);
 			break;
-		case 5:
+		case 'Z':
 			// Z
 			cubes[0] = new Cube(4,0, new Color(255, 0, 0), false, false);
 			cubes[1] = new Cube(5,0, new Color(255, 0, 0), false, false);
 			cubes[2] = new Cube(5,1, new Color(255, 0, 0), false, false);
 			cubes[3] = new Cube(6,1, new Color(255, 0, 0), false, false);
 			break;
-		case 6:
+		case 'S':
 			// S
 			cubes[0] = new Cube(4,1, new Color(0, 255, 0), false, false);
 			cubes[1] = new Cube(5,1, new Color(0, 255, 0), false, false);
@@ -99,16 +93,16 @@ public class Piece {
 		 * -1: sens inverse
 		 */
 		
-		System.out.println("Piece want to turn RIGHT !");
+		System.out.println("Piece want to turn " + ((rotation == 1) ? "RIGHT" : "LEFT") + " !");
 		System.out.println("Actual position : " + position);
-		boolean turn = true;
+		
 		switch(piece) {
-		case 0:
+		case 'O':
 			
 			// O
 			break;
 		
-		case 1:
+		case 'T':
 			
 			// T
 			if(position == 0) {
@@ -190,7 +184,7 @@ public class Piece {
 			
 			break;
 			
-		case 2:
+		case 'I':
 			
 			// I
 			if(position == 0) {
@@ -280,7 +274,7 @@ public class Piece {
 			
 			break;
 			
-		case 3:
+		case 'L':
 			
 			// L
 			if(position == 0) {
@@ -362,7 +356,7 @@ public class Piece {
 			
 			break;
 			
-		case 4:
+		case 'J':
 			
 			// J
 			if(position == 0) {
@@ -444,7 +438,7 @@ public class Piece {
 			
 			break;
 			
-		case 5:
+		case 'Z':
 			
 			// Z
 			if(position == 0) {
@@ -526,7 +520,7 @@ public class Piece {
 			
 			break;
 			
-		case 6:
+		case 'S':
 			
 			// S
 			if(position == 0) {

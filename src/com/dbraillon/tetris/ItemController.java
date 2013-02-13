@@ -5,16 +5,19 @@ import java.util.ArrayList;
 public class ItemController {
 
 	public int xMap, yMap;
+	private RandomGenerator randomGenerator;
 	
 	public ItemController(int xMap, int yMap) {
 		
 		this.xMap = xMap;
 		this.yMap = yMap;
+		
+		randomGenerator = new RandomGenerator();
 	}
 	
 	public Piece create() {
 		
-		return new Piece();
+		return randomGenerator.nextPiece();
 	}
 	
 	/**
@@ -28,13 +31,7 @@ public class ItemController {
 		
 		for(Cube cube : piece.cubes) {
 			
-			if(field.getCube(cube.getX(), cube.getY()) != null) {
-				
-				if(!field.getCube(cube.getX(), cube.getY()).isWall()) {
-					
-					return false;
-				}
-			}
+			if(!field.getCube(cube.getX(), cube.getY()).isEmpty()) return false;
 		}
 		
 		return true;
@@ -59,7 +56,7 @@ public class ItemController {
 				
 				if(cube.getY() + 1 > 2) {
 					
-					if(field.getCube(cube.getX(), cube.getY() + 1) != null) {
+					if(field.getCube(cube.getX(), cube.getY() + 1).isEmpty() == false) {
 						
 						return false;
 					}
@@ -90,7 +87,7 @@ public class ItemController {
 			}
 			else {
 				
-				if(field.getCube(cube.getX() + move, cube.getY()) != null) {
+				if(field.getCube(cube.getX() + move, cube.getY()).isEmpty() == false) {
 				
 					return false;
 				}
@@ -140,7 +137,7 @@ public class ItemController {
 			int n = 0;
 			for(int i = 1; i <= Field.WIDTH_FIELD; i++) {
 				
-				if(field.getCube(i, y) != null) {
+				if(field.getCube(i, y).isEmpty() == false) {
 					
 					n++;
 				}
@@ -150,10 +147,10 @@ public class ItemController {
 				
 				for(int i = 1; i <= Field.WIDTH_FIELD; i++) {
 					
-					field.setCube(null, i, y);
+					field.setCube(new Cube(i, y, null, false, true), i, y);
 				}
 				
-				field.fall(y);
+				field.fallLine(y);
 				s++;
 			}
 		}

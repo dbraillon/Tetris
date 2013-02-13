@@ -32,12 +32,15 @@ public class Cube {
 	
 	public void drawCube(Graphics graphics) {
 		
-		graphics.setColor(color);
-		graphics.fillRect(10 + x * SIZE_CLIP + 2, 32 + y * SIZE_CLIP + 2, SIZE_CLIP - 4, SIZE_CLIP - 4);
+		if(!isEmpty) {
 		
-		graphics.setColor(color.darker());
-		graphics.drawRect(10 + x * SIZE_CLIP + 1, 32 + y * SIZE_CLIP + 1, SIZE_CLIP - 3, SIZE_CLIP - 3);
-		graphics.drawRect(10 + x * SIZE_CLIP, 32 + y * SIZE_CLIP, SIZE_CLIP - 1, SIZE_CLIP - 1);
+			graphics.setColor(color);
+			graphics.fillRect(10 + x * SIZE_CLIP + 2, 32 + y * SIZE_CLIP + 2, SIZE_CLIP - 4, SIZE_CLIP - 4);
+			
+			graphics.setColor(color.darker());
+			graphics.drawRect(10 + x * SIZE_CLIP + 1, 32 + y * SIZE_CLIP + 1, SIZE_CLIP - 3, SIZE_CLIP - 3);
+			graphics.drawRect(10 + x * SIZE_CLIP, 32 + y * SIZE_CLIP, SIZE_CLIP - 1, SIZE_CLIP - 1);
+		}
 	}
 	
 	public int getX() {
@@ -68,5 +71,10 @@ public class Cube {
 	public boolean isEmpty() {
 		
 		return isEmpty;
+	}
+	
+	public void isEmpty(boolean isEmpty) {
+		
+		this.isEmpty = isEmpty;
 	}
 }

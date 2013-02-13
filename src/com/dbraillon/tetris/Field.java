@@ -27,6 +27,10 @@ public class Field {
 					
 					_cubes[x][y] = new Cube(x, y, DARK_GREY_COLOR, true, false);
 				}
+				else {
+					
+					_cubes[x][y] = new Cube(x, y, null, false, true);
+				}
 			}
 		}
 	}
@@ -49,17 +53,7 @@ public class Field {
 			
 			for(int y = 0; y < HEIGHT_TOTAL; y++) {
 				
-				if(x == 0 || x == WIDTH_TOTAL-1 || y == 2 || y == HEIGHT_TOTAL-1) {
-					
-					_cubes[x][y].drawCube(graphics);
-				}
-				else {
-					
-					if(_cubes[x][y] != null) {
-					
-						_cubes[x][y].drawCube(graphics);
-					}
-				}
+				_cubes[x][y].drawCube(graphics);
 			}
 		}
 	}
@@ -68,10 +62,7 @@ public class Field {
 		
 		for(Cube cube : piece.cubes) {
 			
-			if(_cubes[cube.getX()][cube.getY()] != null) {
-				
-				_cubes[cube.getX()][cube.getY()] = null;
-			}
+			_cubes[cube.getX()][cube.getY()].isEmpty(true);
 		}
 	}
 
@@ -83,7 +74,7 @@ public class Field {
 		}
 	}
 
-	public void fall(int start) {
+	public void fallLine(int start) {
 		
 		for(int y = start; y > 2; y--) {
 			
@@ -91,15 +82,15 @@ public class Field {
 				
 				if(y-1 == 2) {
 					
-					_cubes[x][y] = null;
+					_cubes[x][y] = new Cube(x, y, null, false, true);
 				}
 				else {
 					
 					Cube cube = _cubes[x][y-1];
-					if(cube != null) cube.fall();
+					cube.fall();
 					
 					_cubes[x][y] = cube;
-					_cubes[x][y-1] = null;
+					_cubes[x][y-1] = new Cube(x, y-1, null, false, true);
 				}
 			}
 		}

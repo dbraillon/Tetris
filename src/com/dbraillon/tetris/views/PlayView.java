@@ -1,8 +1,5 @@
 package com.dbraillon.tetris.views;
 
-import java.util.ArrayList;
-import java.util.Vector;
-
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -72,12 +69,12 @@ public class PlayView {
 		
 		Input input = gameContainer.getInput();
 		
-		if(input.isKeyDown(Keyboard.KEY_LEFT) && _moveTimer >= _speedMove) {
+		if(input.isKeyDown(Keyboard.KEY_Q) && _moveTimer >= _speedMove) {
 			
 			_itemController.move(-1, _field, _piece);
 			_moveTimer = 0;
 		}
-		else if(input.isKeyDown(Keyboard.KEY_RIGHT) && _moveTimer >= _speedMove) {
+		else if(input.isKeyDown(Keyboard.KEY_D) && _moveTimer >= _speedMove) {
 			
 			_itemController.move(1, _field, _piece);
 			_moveTimer = 0;
@@ -90,7 +87,7 @@ public class PlayView {
 			
 			_itemController.turn(Piece.TURN_RIGHT, _field, _piece);
 		}
-		else if(input.isKeyDown(Keyboard.KEY_DOWN) && _moveTimer >= _speedMove) {
+		else if(input.isKeyDown(Keyboard.KEY_S) && _moveTimer >= _speedMove) {
 			
 			_fallTimer = _speedFall;
 		}
@@ -123,7 +120,7 @@ public class PlayView {
 		}
 		else {
 			
-			//_fallTimer++;
+			_fallTimer++;
 		}
 		
 		if(_moveTimer < _speedMove) {
