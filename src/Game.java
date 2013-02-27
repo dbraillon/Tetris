@@ -1,5 +1,3 @@
-package com.dbraillon.tetris;
-
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -12,12 +10,9 @@ import com.dbraillon.dtetris.views.PlayView;
 public class Game extends BasicGame {
 
 	// TODO: http://tetris.wikia.com/wiki/Tetris_Guideline
-	public static final int HEIGHT_SCREEN = 800;
-	public static final int WIDTH_SCREEN = 600;
-	
-	public static final int MENU_VIEW = 0;
-	public static final int PLAY_VIEW = 1;
-	
+	public final int MENU_VIEW = 0;
+	public final int PLAY_VIEW = 1;
+	public final int PREFERENCES_VIEW = 2;
 	
 	private int  _selectedView;
 	private MenuView _menuView;
@@ -32,8 +27,8 @@ public class Game extends BasicGame {
 	public void init(GameContainer gc) throws SlickException {
 		
 		_selectedView = 0;
-		_menuView = new MenuView(WIDTH_SCREEN, HEIGHT_SCREEN);
-		_playView = new PlayView(WIDTH_SCREEN, HEIGHT_SCREEN);
+		_menuView = new MenuView(gc.getWidth(), gc.getHeight());
+		_playView = new PlayView(gc.getWidth(), gc.getHeight());
 	}
 	
 	@Override
@@ -55,7 +50,7 @@ public class Game extends BasicGame {
 		switch(_selectedView) {
 		case MENU_VIEW:
 			_selectedView = _menuView.update(gc);
-			if(_selectedView == PLAY_VIEW) _playView = new PlayView(WIDTH_SCREEN, HEIGHT_SCREEN);
+			if(_selectedView == PLAY_VIEW) _playView = new PlayView(gc.getWidth(), gc.getHeight());
 			break;
 		case PLAY_VIEW:
 			_selectedView = _playView.update(gc);
@@ -66,7 +61,7 @@ public class Game extends BasicGame {
 	public static void main(String[] args) throws SlickException {
 		
 		AppGameContainer app = new AppGameContainer(new Game("Tétris2d"));
-		app.setDisplayMode(Game.WIDTH_SCREEN, Game.HEIGHT_SCREEN, false);
+		app.setDisplayMode(600, 800, false);
 		app.setTargetFrameRate(30);
 		
 		app.start();

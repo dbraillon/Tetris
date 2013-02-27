@@ -3,7 +3,7 @@ package com.dbraillon.tetris;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
-public class Cube {
+public class Square {
 
 	public static final int SIZE_CLIP = 32;
 	
@@ -11,7 +11,7 @@ public class Cube {
 	private Color color;
 	private boolean isWall, isEmpty;
 	
-	public Cube(int x, int y, Color color, boolean isWall, boolean isEmpty) {
+	public Square(int x, int y, Color color, boolean isWall, boolean isEmpty) {
 		
 		this.x = x;
 		this.y = y;
@@ -25,12 +25,17 @@ public class Cube {
 		this.y++;
 	}
 
+	public void up() {
+		
+		this.y--;
+	}
+	
 	public void move(int move) {
 		
 		this.x += move;
 	}
 	
-	public void drawCube(Graphics graphics) {
+	public void draw(Graphics graphics) {
 		
 		if(!isEmpty) {
 		

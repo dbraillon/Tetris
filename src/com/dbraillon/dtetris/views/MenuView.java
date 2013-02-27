@@ -1,4 +1,4 @@
-package com.dbraillon.tetris.views;
+package com.dbraillon.dtetris.views;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;

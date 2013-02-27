@@ -1,7 +1,8 @@
-package com.dbraillon.tetris;
+package com.dbraillon.dtetris;
 
 import java.util.ArrayList;
 import java.util.Random;
+
 
 public class RandomGenerator {
 
@@ -27,7 +28,7 @@ public class RandomGenerator {
 		}
 	}
 	
-	public Piece nextPiece() {
+	public Tetromino nextPiece() {
 		
 		if(bag.size() == 0) {
 			
@@ -37,7 +38,7 @@ public class RandomGenerator {
 		Random r = new Random();
 		int index = r.nextInt(bag.size());
 		char piece = bag.get(index);
-		Piece rPiece = new Piece(piece);
+		Tetromino rPiece = new Tetromino(piece);
 		
 		bag.remove(index);
 		
