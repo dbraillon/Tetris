@@ -1,10 +1,13 @@
 package com.dbraillon.dtetris.views;
 
+import java.awt.Font;
+
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.TrueTypeFont;
 
 import com.dbraillon.dtetris.Game;
 
@@ -21,8 +24,9 @@ public class MenuView implements View {
 	private final int GO_DOWN 	=  1;
 	
 	// couleur utilisée dans la vue
-	private final Color WHITE_COLOR = new Color(255, 255, 255);
-	
+	private final Color WHITE_COLOR;
+	private final TrueTypeFont TITLE_FONT;
+	private final TrueTypeFont MENU_ITEM_FONT;
 	
 	private int _width, _height;
 	private int _itemSelected;
@@ -35,12 +39,17 @@ public class MenuView implements View {
 		_width 	= width;
 		_height = height;
 		_itemSelected = PLAY_ITEM;
+		
+		WHITE_COLOR 	= new Color(255, 255, 255);
+		TITLE_FONT  	= new TrueTypeFont(new Font("Courier New", Font.BOLD, 24), true);
+		MENU_ITEM_FONT 	= new TrueTypeFont(new Font("Courier New", Font.BOLD, 14), true);
 	}
 	
 	@Override
 	public void init(GameContainer gc) {
 		
 		System.out.println("- MenuView : init");
+	
 		// nothing
 	}
 	
@@ -51,12 +60,14 @@ public class MenuView implements View {
 		graphics.setColor(WHITE_COLOR);
 		
 		// titre
+		graphics.setFont(TITLE_FONT);
 		graphics.drawString("Tétris2d", percent(_width, 10), percent(_height, 10));
 		
 		// menu items
-		graphics.drawString(get_ItemSelected(PLAY_ITEM) 	 + " Jouer", 	  percent(_width, 10), percent(_height, 10) + 20);
-		graphics.drawString(get_ItemSelected(PREFERENCE_ITEM)+ " Préférence", percent(_width, 10), percent(_height, 10) + 35);
-		graphics.drawString(get_ItemSelected(QUIT_ITEM) 	 + " Quitter",    percent(_width, 10), percent(_height, 10) + 50);
+		graphics.setFont(MENU_ITEM_FONT);
+		graphics.drawString(get_ItemSelected(PLAY_ITEM) 	 + " Jouer", 	  percent(_width, 10), percent(_height, 90) - 60);
+		graphics.drawString(get_ItemSelected(PREFERENCE_ITEM)+ " Préférence", percent(_width, 10), percent(_height, 90) - 30);
+		graphics.drawString(get_ItemSelected(QUIT_ITEM) 	 + " Quitter",    percent(_width, 10), percent(_height, 90) -  0);
 	}
 	
 	public int update(GameContainer gameContainer) {
