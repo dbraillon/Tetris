@@ -11,20 +11,26 @@ import com.dbraillon.dtetris.Game;
 
 public class MenuView implements View {
 
+	// constantes qui représente les items du menu
 	private final int PLAY_ITEM 		= 0;
 	private final int PREFERENCE_ITEM 	= 1;
 	private final int QUIT_ITEM 		= 2;
 	
+	// commandes possibles
 	private final int GO_UP 	= -1;
-	private final int GO_DOWN 	= 1;
+	private final int GO_DOWN 	=  1;
 	
+	// couleur utilisée dans la vue
 	private final Color WHITE_COLOR = new Color(255, 255, 255);
 	
 	
 	private int _width, _height;
 	private int _itemSelected;
 	
+	
 	public MenuView(int width, int height) {
+		
+		System.out.println("- MenuView : constructor");
 		
 		_width 	= width;
 		_height = height;
@@ -34,10 +40,13 @@ public class MenuView implements View {
 	@Override
 	public void init(GameContainer gc) {
 		
+		System.out.println("- MenuView : init");
 		// nothing
 	}
 	
 	public void render(Graphics graphics) {
+		
+		System.out.println("- MenuView : render");
 		
 		graphics.setColor(WHITE_COLOR);
 		
@@ -52,8 +61,9 @@ public class MenuView implements View {
 	
 	public int update(GameContainer gameContainer) {
 		
-		Input input = gameContainer.getInput();
+		System.out.println("- MenuView : update");
 		
+		Input input = gameContainer.getInput();
 		if(input.isKeyPressed(Keyboard.KEY_DOWN)) {
 			
 			change_ItemSelected(GO_DOWN);
@@ -72,15 +82,21 @@ public class MenuView implements View {
 	
 	private int percent(int value, int percent) {
 		
+		System.out.println("- MenuView : percent");
+		
 		return value * percent / 100;
 	}
 	
 	private String get_ItemSelected(int value) {
 		
+		System.out.println("- MenuView : get_ItemSelected");
+		
 		return (_itemSelected == value) ? ">" : " ";
 	}
 	 
 	private void change_ItemSelected(int value) {
+		
+		System.out.println("- MenuView : change_ItemSelected");
 		
 		_itemSelected += value;
 		_itemSelected = (_itemSelected ==  3) ? PLAY_ITEM : _itemSelected;
@@ -88,6 +104,8 @@ public class MenuView implements View {
 	}
 	
 	private int select_ItemSelected(GameContainer gameContainer) {
+		
+		System.out.println("- MenuView : select_ItemSelected");
 		
 		switch(_itemSelected) {
 			
