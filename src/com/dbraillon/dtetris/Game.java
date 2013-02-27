@@ -1,3 +1,6 @@
+package com.dbraillon.dtetris;
+import java.util.ArrayList;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -6,56 +9,55 @@ import org.newdawn.slick.SlickException;
 
 import com.dbraillon.dtetris.views.MenuView;
 import com.dbraillon.dtetris.views.PlayView;
+import com.dbraillon.dtetris.views.PreferenceView;
+import com.dbraillon.dtetris.views.View;
+
 
 public class Game extends BasicGame {
 
 	// TODO: http://tetris.wikia.com/wiki/Tetris_Guideline
-	public final int MENU_VIEW = 0;
-	public final int PLAY_VIEW = 1;
-	public final int PREFERENCES_VIEW = 2;
 	
-	private int  _selectedView;
-	private MenuView _menuView;
-	private PlayView _playView;
+	// constantes qui représentent les vues
+	public static final int MENU_VIEW 			= 0;
+	public static final int PLAY_VIEW 			= 1;
+	public static final int PREFERENCES_VIEW	= 2;
+	
+	// gestion des vues
+	private int  			_selectedView;
+	private ArrayList<View> _views;
 
 	
 	public Game(String title) {
+		
 		super(title);
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		
-		_selectedView = 0;
-		_menuView = new MenuView(gc.getWidth(), gc.getHeight());
-		_playView = new PlayView(gc.getWidth(), gc.getHeight());
+		System.out.println("- Game : init");
+		
+		_selectedView = MENU_VIEW;
+		_views = new ArrayList<View>();
+		_views.add(new MenuView(gc.getWidth(), gc.getHeight()));
+		_views.add(new PlayView(gc.getWidth(), gc.getHeight()));
+		_views.add(new PreferenceView(gc.getWidth(), gc.getHeight()));
 	}
 	
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		
-		switch(_selectedView) {
-		case MENU_VIEW:
-			_menuView.render(g);
-			break;
-		case PLAY_VIEW:
-			_playView.render(g);
-			break;
-		}
+		System.out.println("- Game : render");
+		
+		_views.get(_selectedView).render(g);
 	}
 	
 	@Override
 	public void update(GameContainer gc, int arg1) throws SlickException {
 		
-		switch(_selectedView) {
-		case MENU_VIEW:
-			_selectedView = _menuView.update(gc);
-			if(_selectedView == PLAY_VIEW) _playView = new PlayView(gc.getWidth(), gc.getHeight());
-			break;
-		case PLAY_VIEW:
-			_selectedView = _playView.update(gc);
-			break;
-		}
+		System.out.println("- Game : update");
+		
+		_selectedView = _views.get(_selectedView).update(gc);
 	}
 	
 	public static void main(String[] args) throws SlickException {

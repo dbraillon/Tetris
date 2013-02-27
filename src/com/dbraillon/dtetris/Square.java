@@ -5,7 +5,7 @@ import org.newdawn.slick.Graphics;
 
 public class Square {
 
-	private final int SIZE_CLIP = 32;
+	public static final int SIZE_CLIP = 32;
 	
 	private int x, y;
 	private Color color;

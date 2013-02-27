@@ -3,9 +3,6 @@ package com.dbraillon.dtetris;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
-import com.dbraillon.tetris.Field;
-import com.dbraillon.dtetris.Square;
-
 public class Tetromino {
 
 	public static final int TURN_RIGHT =  1;

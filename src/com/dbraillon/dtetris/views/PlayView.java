@@ -2,21 +2,19 @@ package com.dbraillon.dtetris.views;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
-import com.dbraillon.dtetris.SuperMoveSystem;
 import com.dbraillon.dtetris.Playfield;
 import com.dbraillon.dtetris.RandomGenerator;
+import com.dbraillon.dtetris.Square;
+import com.dbraillon.dtetris.SuperMoveSystem;
 import com.dbraillon.dtetris.SuperRotationSystem;
 import com.dbraillon.dtetris.Tetromino;
-import com.dbraillon.tetris.Square;
-import com.dbraillon.tetris.Field;
-import com.dbraillon.tetris.Game;
-import com.dbraillon.tetris.ItemController;
 
-public class PlayView {
+public class PlayView implements View {
 
 	private final Color WHITE_COLOR = new Color(255, 255, 255);
 	
@@ -144,6 +142,13 @@ public class PlayView {
 			moveTimer++;
 		}
 		
-		return Game.PLAY_VIEW;
+		return com.dbraillon.dtetris.Game.PLAY_VIEW;
+	}
+
+
+	@Override
+	public void init(GameContainer gc) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,6 +1,5 @@
 package com.dbraillon.dtetris;
 
-import com.dbraillon.tetris.Field;
 
 public class BoundingSquare {
 
@@ -35,7 +34,7 @@ public class BoundingSquare {
 		}
 	}
 	
-	public void changePosition(int position, Tetromino tetromino, Field field) {
+	public void changePosition(int position, Tetromino tetromino, Playfield playfield) {
 		
 		this.tetromino = tetromino;
 		

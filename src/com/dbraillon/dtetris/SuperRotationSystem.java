@@ -1,6 +1,5 @@
 package com.dbraillon.dtetris;
 
-import com.dbraillon.tetris.Field;
 
 public class SuperRotationSystem {
 
