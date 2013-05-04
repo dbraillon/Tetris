@@ -2,7 +2,6 @@ package com.dbraillon.dtetris.views;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -17,8 +16,8 @@ import com.dbraillon.dtetris.Tetromino;
 public class PlayView implements View {
 
 	private final Color WHITE_COLOR = new Color(255, 255, 255);
+	private final int X_END_MAP;
 	
-	private int heightScreen, widthScreen;
 	
 	private RandomGenerator randomGenerator;
 	private SuperMoveSystem superMoveSystem;
@@ -35,24 +34,10 @@ public class PlayView implements View {
 	private int moveSpeed;
 	private int fallSpeed;
 	
+	private boolean delayedAutoShift;
 	
-	private final int X_END_MAP;
-	private final int Y_END_MAP;
-	
-	/*
-	
-	private Tetromino _piece;
-	private ItemController _itemController;
-	
-	
-	private int _level;
-	
-	private int _landTimer;*/
 	
 	public PlayView(int width, int height) {
-		
-		heightScreen = width;
-		widthScreen = height;
 		
 		randomGenerator = new RandomGenerator();
 		superMoveSystem = new SuperMoveSystem();
@@ -62,25 +47,21 @@ public class PlayView implements View {
 		tetromino = randomGenerator.nextPiece();
 		
 		score = 0;
-		fallSpeed = 10;
+		fallSpeed = 20;
 		moveSpeed = 2;
 		
+		delayedAutoShift = false;
+		
 		X_END_MAP = 10 + playfield.getWidth() * Square.SIZE_CLIP + 10;
-		Y_END_MAP = 10 + playfield.getHeight() * Square.SIZE_CLIP + 10;
-		
-		/*
-		_piece = _itemController.create();
-		
-		_moveTimer = 0;
-		_fallTimer = 0;
-		_landTimer = 0;
-		
-		
-		
-		*/
 	}
 	
+	@Override
+	public void init(GameContainer gc) {
+		
+		// nothing here
+	}
 	
+	@Override
 	public void render(Graphics graphics) {
 		
 		graphics.setColor(WHITE_COLOR);
@@ -90,29 +71,32 @@ public class PlayView implements View {
 		tetromino.draw(graphics);
 	}
 	
+	@Override
 	public int update(GameContainer gameContainer) {
 		
 		Input input = gameContainer.getInput();
 		
-		if(input.isKeyDown(Keyboard.KEY_Q) && moveTimer >= moveSpeed) {
+		if(input.isKeyDown(Keyboard.KEY_LEFT) && moveTimer >= moveSpeed) {
+			
+			//if(delayedAutoShift)
 			
 			superMoveSystem.move(playfield, tetromino, Tetromino.MOVE_LEFT);
 			moveTimer = 0;
 		}
-		else if(input.isKeyDown(Keyboard.KEY_D) && moveTimer >= moveSpeed) {
+		else if(input.isKeyDown(Keyboard.KEY_RIGHT) && moveTimer >= moveSpeed) {
 			
 			superMoveSystem.move(playfield, tetromino, Tetromino.MOVE_RIGHT);
 			moveTimer = 0;
 		}
-		else if(input.isKeyPressed(Keyboard.KEY_K)) {
+		else if(input.isKeyPressed(Keyboard.KEY_W)) {
 			
 			superRotationSystem.rotate(Tetromino.TURN_LEFT, tetromino, playfield);
 		}
-		else if(input.isKeyPressed(Keyboard.KEY_L)) {
+		else if(input.isKeyPressed(Keyboard.KEY_X)) {
 			
 			superRotationSystem.rotate(Tetromino.TURN_RIGHT, tetromino, playfield);
 		}
-		else if(input.isKeyDown(Keyboard.KEY_S) && moveTimer >= moveSpeed) {
+		else if(input.isKeyDown(Keyboard.KEY_DOWN) && moveTimer >= moveSpeed) {
 			
 			fallTimer = fallSpeed;
 		}
@@ -143,12 +127,5 @@ public class PlayView implements View {
 		}
 		
 		return com.dbraillon.dtetris.Game.PLAY_VIEW;
-	}
-
-
-	@Override
-	public void init(GameContainer gc) {
-		// TODO Auto-generated method stub
-		
 	}
 }

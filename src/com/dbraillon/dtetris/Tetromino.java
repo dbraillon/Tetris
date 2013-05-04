@@ -638,4 +638,10 @@ public class Tetromino {
 			squares[i].fall(-1);
 		}
 	}
+	
+	@Override
+	public String toString()
+	{
+		return type + "";
+	}
 }

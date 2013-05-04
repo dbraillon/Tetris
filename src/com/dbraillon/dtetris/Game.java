@@ -35,27 +35,26 @@ public class Game extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		
-		System.out.println("- Game : init");
-		
 		_selectedView = MENU_VIEW;
 		_views = new ArrayList<View>();
 		_views.add(new MenuView(gc.getWidth(), gc.getHeight()));
 		_views.add(new PlayView(gc.getWidth(), gc.getHeight()));
 		_views.add(new PreferenceView(gc.getWidth(), gc.getHeight()));
+		
+		for(View view : _views) {
+		
+			view.init(gc);
+		}
 	}
 	
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		
-		System.out.println("- Game : render");
 		
 		_views.get(_selectedView).render(g);
 	}
 	
 	@Override
 	public void update(GameContainer gc, int arg1) throws SlickException {
-		
-		System.out.println("- Game : update");
 		
 		_selectedView = _views.get(_selectedView).update(gc);
 	}

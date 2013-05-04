@@ -25,16 +25,20 @@ public class MenuView implements View {
 	
 	// couleur utilisée dans la vue
 	private final Color WHITE_COLOR;
+	
+	// polices utilisées dans la vue
 	private final TrueTypeFont TITLE_FONT;
 	private final TrueTypeFont MENU_ITEM_FONT;
 	
+	// propriétés de la vue
 	private int _width, _height;
+	
 	private int _itemSelected;
 	
 	
 	public MenuView(int width, int height) {
 		
-		System.out.println("- MenuView : constructor");
+		System.out.println("+ MenuView(" + width + ", " + height + ")");
 		
 		_width 	= width;
 		_height = height;
@@ -48,14 +52,12 @@ public class MenuView implements View {
 	@Override
 	public void init(GameContainer gc) {
 		
-		System.out.println("- MenuView : init");
+		System.out.println("  MenuView: init");
 	
 		// nothing
 	}
 	
 	public void render(Graphics graphics) {
-		
-		System.out.println("- MenuView : render");
 		
 		graphics.setColor(WHITE_COLOR);
 		
@@ -71,8 +73,6 @@ public class MenuView implements View {
 	}
 	
 	public int update(GameContainer gameContainer) {
-		
-		System.out.println("- MenuView : update");
 		
 		Input input = gameContainer.getInput();
 		if(input.isKeyPressed(Keyboard.KEY_DOWN)) {
@@ -93,30 +93,26 @@ public class MenuView implements View {
 	
 	private int percent(int value, int percent) {
 		
-		System.out.println("- MenuView : percent");
-		
 		return value * percent / 100;
 	}
 	
 	private String get_ItemSelected(int value) {
-		
-		System.out.println("- MenuView : get_ItemSelected");
 		
 		return (_itemSelected == value) ? ">" : " ";
 	}
 	 
 	private void change_ItemSelected(int value) {
 		
-		System.out.println("- MenuView : change_ItemSelected");
-		
 		_itemSelected += value;
 		_itemSelected = (_itemSelected ==  3) ? PLAY_ITEM : _itemSelected;
 		_itemSelected = (_itemSelected == -1) ? QUIT_ITEM : _itemSelected;
+		
+		System.out.println("+ MenuView: Item selected: " + _itemSelected);
 	}
 	
 	private int select_ItemSelected(GameContainer gameContainer) {
 		
-		System.out.println("- MenuView : select_ItemSelected");
+		System.out.println("+ MenuView: Item clicked: " + _itemSelected);
 		
 		switch(_itemSelected) {
 			

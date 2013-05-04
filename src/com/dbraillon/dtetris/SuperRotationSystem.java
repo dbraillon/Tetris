@@ -5,7 +5,7 @@ public class SuperRotationSystem {
 
 	public SuperRotationSystem() {
 		
-		System.out.println("-SuperRotationSystem: Initializing");
+		System.out.println("  SuperRotationSystem: Initializing");
 	}
 	
 	public void rotate(int rotation, Tetromino tetromino, Playfield playfield) {

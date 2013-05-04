@@ -4,12 +4,12 @@ public class SuperMoveSystem {
 
 	public SuperMoveSystem() {
 		
-		System.out.println("-SuperMoveSystem: Initializing");
+		System.out.println("  SuperMoveSystem()");
 	}
 	
 	public boolean fall(Playfield playfield, Tetromino tetromino, RandomGenerator randomGenerator) {
 		
-		System.out.println("-SuperMoveSystem: " + tetromino.toString() + " falls");
+		System.out.println("+ SuperMoveSystem: " + tetromino.toString() + " falls");
 		
 		// first, make fall the Tetromino
 		tetromino.fall();
