@@ -6,6 +6,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
+import com.dbraillon.dtetris.DelayedAutoShift;
 import com.dbraillon.dtetris.Playfield;
 import com.dbraillon.dtetris.RandomGenerator;
 import com.dbraillon.dtetris.Square;
@@ -34,7 +35,7 @@ public class PlayView implements View {
 	private int moveSpeed;
 	private int fallSpeed;
 	
-	private boolean delayedAutoShift;
+	private DelayedAutoShift delayedAutoShift;
 	
 	
 	public PlayView(int width, int height) {
@@ -42,6 +43,7 @@ public class PlayView implements View {
 		randomGenerator = new RandomGenerator();
 		superMoveSystem = new SuperMoveSystem();
 		superRotationSystem = new SuperRotationSystem();
+		delayedAutoShift = new DelayedAutoShift();
 		
 		playfield = new Playfield(22, 12);
 		tetromino = randomGenerator.nextPiece();
@@ -49,8 +51,6 @@ public class PlayView implements View {
 		score = 0;
 		fallSpeed = 20;
 		moveSpeed = 2;
-		
-		delayedAutoShift = false;
 		
 		X_END_MAP = 10 + playfield.getWidth() * Square.SIZE_CLIP + 10;
 	}
@@ -76,19 +76,10 @@ public class PlayView implements View {
 		
 		Input input = gameContainer.getInput();
 		
-		if(input.isKeyDown(Keyboard.KEY_LEFT) && moveTimer >= moveSpeed) {
-			
-			//if(delayedAutoShift)
-			
-			superMoveSystem.move(playfield, tetromino, Tetromino.MOVE_LEFT);
-			moveTimer = 0;
-		}
-		else if(input.isKeyDown(Keyboard.KEY_RIGHT) && moveTimer >= moveSpeed) {
-			
-			superMoveSystem.move(playfield, tetromino, Tetromino.MOVE_RIGHT);
-			moveTimer = 0;
-		}
-		else if(input.isKeyPressed(Keyboard.KEY_W)) {
+		// shift with the delayAutoShift method
+		delayedAutoShift.tryToShift(input, playfield, tetromino);
+		
+		if(input.isKeyPressed(Keyboard.KEY_W)) {
 			
 			superRotationSystem.rotate(Tetromino.TURN_LEFT, tetromino, playfield);
 		}
@@ -103,7 +94,8 @@ public class PlayView implements View {
 		
 		if(fallTimer >= fallSpeed) {
 			
-			if(!superMoveSystem.fall(playfield, tetromino, randomGenerator)) {
+			
+			if(!superMoveSystem.fall(playfield, tetromino)) {
 				
 				// add the Tetromino in the Playfield
 				playfield.setTetromino(tetromino);

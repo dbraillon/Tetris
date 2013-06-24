@@ -7,7 +7,7 @@ public class SuperMoveSystem {
 		System.out.println("  SuperMoveSystem()");
 	}
 	
-	public boolean fall(Playfield playfield, Tetromino tetromino, RandomGenerator randomGenerator) {
+	public boolean fall(Playfield playfield, Tetromino tetromino) {
 		
 		System.out.println("+ SuperMoveSystem: " + tetromino.toString() + " falls");
 		
@@ -25,7 +25,7 @@ public class SuperMoveSystem {
 		return true;
 	}
 	
-	public void move(Playfield playfield, Tetromino tetromino, int move) {
+	public void shift(Playfield playfield, Tetromino tetromino, int move) {
 		
 		System.out.println("-SuperMoveSystem: " + tetromino.toString() + " moves " + toString(move));
 		
