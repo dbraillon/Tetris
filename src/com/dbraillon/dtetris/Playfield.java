@@ -59,7 +59,9 @@ public class Playfield {
 		}
 	}
 	
-	public void checkLines(Tetromino tetromino) {
+	public long checkLines(Tetromino tetromino) {
+		
+		long lineClear = 0;
 		
 		ArrayList<Integer> lines = new ArrayList<Integer>();
 		for(Square square : tetromino.squares) {
@@ -94,10 +96,13 @@ public class Playfield {
 			
 			if(isComplete) {
 				
+				lineClear++;
 				removeLine(line);
 				fallLine(lines.get(y)+yyy);
 			}
 		}
+		
+		return lineClear;
 	}
 	
 	public void fallLine(int start) {

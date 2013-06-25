@@ -94,12 +94,11 @@ public class PlayView implements View {
 		
 		if(fallTimer >= fallSpeed) {
 			
-			
 			if(!superMoveSystem.fall(playfield, tetromino)) {
 				
 				// add the Tetromino in the Playfield
 				playfield.setTetromino(tetromino);
-				playfield.checkLines(tetromino);
+				score += playfield.checkLines(tetromino);
 				
 				// create a new Tetromino
 				tetromino = randomGenerator.nextPiece();
