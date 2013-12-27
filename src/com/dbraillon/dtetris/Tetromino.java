@@ -1,9 +1,14 @@
 package com.dbraillon.dtetris;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
-public class Tetromino {
+import com.dbraillon.dbgraphics.Depth;
+import com.dbraillon.dbgraphics.Point;
+import com.dbraillon.dbgraphics.Renderable;
+
+public class Tetromino extends Renderable {
 
 	public static final int TURN_RIGHT =  1;
 	public static final int TURN_LEFT  = -1;
@@ -21,7 +26,8 @@ public class Tetromino {
 	
 	public BoundingSquare boundingSquare;
 	
-	public Tetromino(char type) {
+	public Tetromino(char type, Point position) {
+		super(position, Depth.Front, new Color(255, 255, 255), 0, 0);
 		
 		this.type = type;
 		
@@ -98,12 +104,18 @@ public class Tetromino {
 		}
 	}
 	
-	public void draw(Graphics graphics) {
+	@Override
+	protected void render(GameContainer gameContainer) {
 		
 		for(Square square : squares) {
 			
-			square.draw(graphics);
+			square.draw(gameContainer.getGraphics(), getPosition());
 		}
+	}
+	
+	public void draw(Graphics graphics) {
+		
+		
 	}
 
 	public void rotate(int rotation) {

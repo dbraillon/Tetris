@@ -3,14 +3,18 @@ package com.dbraillon.dtetris;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.dbraillon.dbgraphics.Point;
+
 
 public class RandomGenerator {
 
 	private ArrayList<Character> bag;
+	private Point playfieldPosition;
 	
-	public RandomGenerator() {
+	public RandomGenerator(Point playfieldPosition) {
 		
 		bag = new ArrayList<Character>();
+		this.playfieldPosition = playfieldPosition;
 		fillBag();
 	}
 	
@@ -38,7 +42,7 @@ public class RandomGenerator {
 		Random r = new Random();
 		int index = r.nextInt(bag.size());
 		char piece = bag.get(index);
-		Tetromino rPiece = new Tetromino(piece);
+		Tetromino rPiece = new Tetromino(piece, playfieldPosition);
 		
 		bag.remove(index);
 		

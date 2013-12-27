@@ -3,28 +3,29 @@ package com.dbraillon.dtetris;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
+import org.newdawn.slick.GameContainer;
 
-public class Playfield {
+import com.dbraillon.dbgraphics.Depth;
+import com.dbraillon.dbgraphics.Point;
+import com.dbraillon.dbgraphics.Renderable;
+
+public class Playfield extends Renderable {
 
 	private final Color DARK_GREY_COLOR = new Color(120, 120, 120);
 	private final Color BLACK_COLOR = new Color(10, 10, 10);
 	
-	private int height, width;
 	private Square[][] squares;
 	
 	
 	public Playfield(int height, int width) {
-		
-		this.height = height;
-		this.width  = width;
+		super(new Point(175, 50), Depth.Middle, new Color(10, 10, 10), height, width);
 		
 		this.squares = new Square[width][height];
-		for(int y = 0; y < this.height; y++) {
+		for(int y = 0; y < getHeight(); y++) {
 			
-			for(int x = 0; x < this.width; x++) {
+			for(int x = 0; x < getWidth(); x++) {
 				
-				if(y == this.height-1 || x == 0 || x == this.width-1) {
+				if(y == getHeight()-1 || x == 0 || x == getWidth()-1) {
 					
 					squares[x][y] = new Square(x, y, DARK_GREY_COLOR, false);
 				}
@@ -40,13 +41,14 @@ public class Playfield {
 		}
 	}
 	
-	public void draw(Graphics graphics) {
+	@Override
+	protected void render(GameContainer gameContainer) {
 		
-		for(int y = 0; y < height; y++) {
+		for(int y = 0; y < getHeight(); y++) {
 			
-			for(int x = 0; x < width; x++) {
+			for(int x = 0; x < getWidth(); x++) {
 				
-				squares[x][y].draw(graphics);
+				squares[x][y].draw(gameContainer.getGraphics(), getPosition());
 			}
 		}
 	}
@@ -59,9 +61,9 @@ public class Playfield {
 		}
 	}
 	
-	public long checkLines(Tetromino tetromino) {
+	public int checkLines(Tetromino tetromino) {
 		
-		long lineClear = 0;
+		int lineClear = 0;
 		
 		ArrayList<Integer> lines = new ArrayList<Integer>();
 		for(Square square : tetromino.squares) {
@@ -109,7 +111,7 @@ public class Playfield {
 		
 		for(int y = start; y > 2; y--) {
 			
-			for(int x = 1; x < width-1; x++) {
+			for(int x = 1; x < getWidth()-1; x++) {
 				
 				if(y-1 == 2) {
 					
@@ -137,20 +139,10 @@ public class Playfield {
 		squares[square.getX()][square.getY()] = square;
 	}
 	
-	public int getHeight() {
-		
-		return height;
-	}
-	
-	public int getWidth() {
-		
-		return width;
-	}
-	
 	public ArrayList<Square> getLines(int y) {
 		
 		ArrayList<Square> line = new ArrayList<Square>();
-		for(int x = 1; x < width-1; x++) {
+		for(int x = 1; x < getWidth()-1; x++) {
 			
 			line.add(squares[x][y]);
 		}
