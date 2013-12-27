@@ -1,4 +1,4 @@
-package com.dbraillon.dtetris;
+package com.dbraillon.dtetris.entities;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import com.dbraillon.dbgraphics.Depth;
 import com.dbraillon.dbgraphics.Point;
 import com.dbraillon.dbgraphics.Renderable;
+import com.dbraillon.dtetris.advancedsystem.BoundingSquare;
 
 public class Tetromino extends Renderable {
 
@@ -36,52 +37,52 @@ public class Tetromino extends Renderable {
 		switch(this.type) {
 		case 'O':
 			// O
-			squares[0] = new Square(5,0, new Color(255, 255, 0), false);
-			squares[1] = new Square(5,1, new Color(255, 255, 0), false);
-			squares[2] = new Square(6,0, new Color(255, 255, 0), false);
-			squares[3] = new Square(6,1, new Color(255, 255, 0), false);
+			squares[0] = new Square(5,0, new Color(255, 255, 0));
+			squares[1] = new Square(5,1, new Color(255, 255, 0));
+			squares[2] = new Square(6,0, new Color(255, 255, 0));
+			squares[3] = new Square(6,1, new Color(255, 255, 0));
 			break;
 		case 'T':
 			// T
-			squares[0] = new Square(4,1, new Color(0, 255, 255), false);
-			squares[1] = new Square(5,1, new Color(0, 255, 255), false);
-			squares[2] = new Square(6,1, new Color(0, 255, 255), false);
-			squares[3] = new Square(5,0, new Color(0, 255, 255), false);
+			squares[0] = new Square(4,1, new Color(0, 255, 255));
+			squares[1] = new Square(5,1, new Color(0, 255, 255));
+			squares[2] = new Square(6,1, new Color(0, 255, 255));
+			squares[3] = new Square(5,0, new Color(0, 255, 255));
 			break;
 		case 'I':
 			// I
-			squares[0] = new Square(4,0, new Color(255, 0, 255), false);
-			squares[1] = new Square(5,0, new Color(255, 0, 255), false);
-			squares[2] = new Square(6,0, new Color(255, 0, 255), false);
-			squares[3] = new Square(7,0, new Color(255, 0, 255), false);
+			squares[0] = new Square(4,0, new Color(255, 0, 255));
+			squares[1] = new Square(5,0, new Color(255, 0, 255));
+			squares[2] = new Square(6,0, new Color(255, 0, 255));
+			squares[3] = new Square(7,0, new Color(255, 0, 255));
 			break;
 		case 'L':
 			// L
-			squares[0] = new Square(4,1, new Color(255, 127, 0), false);
-			squares[1] = new Square(5,1, new Color(255, 127, 0), false);
-			squares[2] = new Square(6,1, new Color(255, 127, 0), false);
-			squares[3] = new Square(6,0, new Color(255, 127, 0), false);
+			squares[0] = new Square(4,1, new Color(255, 127, 0));
+			squares[1] = new Square(5,1, new Color(255, 127, 0));
+			squares[2] = new Square(6,1, new Color(255, 127, 0));
+			squares[3] = new Square(6,0, new Color(255, 127, 0));
 			break;
 		case 'J':
 			// J
-			squares[0] = new Square(4,1, new Color(0, 0, 255), false);
-			squares[1] = new Square(5,1, new Color(0, 0, 255), false);
-			squares[2] = new Square(6,1, new Color(0, 0, 255), false);
-			squares[3] = new Square(4,0, new Color(0, 0, 255), false);
+			squares[0] = new Square(4,1, new Color(0, 0, 255));
+			squares[1] = new Square(5,1, new Color(0, 0, 255));
+			squares[2] = new Square(6,1, new Color(0, 0, 255));
+			squares[3] = new Square(4,0, new Color(0, 0, 255));
 			break;
 		case 'Z':
 			// Z
-			squares[0] = new Square(4,0, new Color(255, 0, 0), false);
-			squares[1] = new Square(5,0, new Color(255, 0, 0), false);
-			squares[2] = new Square(5,1, new Color(255, 0, 0), false);
-			squares[3] = new Square(6,1, new Color(255, 0, 0), false);
+			squares[0] = new Square(4,0, new Color(255, 0, 0));
+			squares[1] = new Square(5,0, new Color(255, 0, 0));
+			squares[2] = new Square(5,1, new Color(255, 0, 0));
+			squares[3] = new Square(6,1, new Color(255, 0, 0));
 			break;
 		case 'S':
 			// S
-			squares[0] = new Square(4,1, new Color(0, 255, 0), false);
-			squares[1] = new Square(5,1, new Color(0, 255, 0), false);
-			squares[2] = new Square(5,0, new Color(0, 255, 0), false);
-			squares[3] = new Square(6,0, new Color(0, 255, 0), false);
+			squares[0] = new Square(4,1, new Color(0, 255, 0));
+			squares[1] = new Square(5,1, new Color(0, 255, 0));
+			squares[2] = new Square(5,0, new Color(0, 255, 0));
+			squares[3] = new Square(6,0, new Color(0, 255, 0));
 			break;
 		}
 		
@@ -634,7 +635,7 @@ public class Tetromino extends Renderable {
 		
 		for(Square square : squares) {
 			
-			if(!playfield.getSquare(square.getX(), square.getY()).isEmpty()) {
+			if(playfield.getSquare(square.getX(), square.getY()) != null) {
 				
 				return true;
 			}

@@ -1,9 +1,10 @@
-package com.dbraillon.dtetris;
+package com.dbraillon.dtetris.advancedsystem;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import com.dbraillon.dbgraphics.Point;
+import com.dbraillon.dtetris.entities.Tetromino;
 
 
 public class RandomGenerator {
