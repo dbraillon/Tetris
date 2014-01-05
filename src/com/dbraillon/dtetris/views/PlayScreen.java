@@ -6,6 +6,7 @@ import org.newdawn.slick.Input;
 
 import com.dbraillon.dbgraphics.Screen;
 import com.dbraillon.dtetris.advancedsystem.DelayedAutoShift;
+import com.dbraillon.dtetris.advancedsystem.LevelSystem;
 import com.dbraillon.dtetris.advancedsystem.RandomGenerator;
 import com.dbraillon.dtetris.advancedsystem.ScoringSystem;
 import com.dbraillon.dtetris.advancedsystem.SuperMoveSystem;
@@ -22,6 +23,7 @@ public class PlayScreen extends Screen {
 	private SuperRotationSystem superRotationSystem;
 	private DelayedAutoShift delayedAutoShift;
 	private ScoringSystem scoringSystem;
+	private LevelSystem levelSystem;
 	
 	private Tetromino tetromino;
 	
@@ -41,6 +43,7 @@ public class PlayScreen extends Screen {
 		superRotationSystem = new SuperRotationSystem();
 		delayedAutoShift = new DelayedAutoShift();
 		scoringSystem = new ScoringSystem();
+		levelSystem = new LevelSystem(1);
 		
 		tetromino = randomGenerator.nextPiece();
 		

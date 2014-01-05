@@ -11,6 +11,4 @@ public class GameConfigs {
 	public final static int windowsHeight = 800;
 	public final static String windowsName = gameTitle;
 	public final static int windowsFrameRate = 30;
-	
-	
 }
