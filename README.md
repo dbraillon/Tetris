@@ -8,3 +8,6 @@ v.1.4.0
 	
 v.1.4.1
 	+ Better code
+	+ Better UI (squares)
+	+ Add top line
+	+ Add GameConfigs

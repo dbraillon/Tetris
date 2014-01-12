@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 
 import com.dbraillon.dbgraphics.Screen;
+import com.dbraillon.dtetris.GameConfigs;
 import com.dbraillon.dtetris.advancedsystem.DelayedAutoShift;
 import com.dbraillon.dtetris.advancedsystem.LevelSystem;
 import com.dbraillon.dtetris.advancedsystem.RandomGenerator;
@@ -36,7 +37,7 @@ public class PlayScreen extends Screen {
 	
 	public PlayScreen() {
 		
-		playfield = new Playfield(22, 12);
+		playfield = new Playfield(GameConfigs.playfieldHeight, GameConfigs.playfieldWidth);
 		
 		randomGenerator = new RandomGenerator(playfield.getPosition());
 		superMoveSystem = new SuperMoveSystem();

@@ -1,21 +1,46 @@
 package com.dbraillon.dtetris.entities;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 
+import com.dbraillon.dbgraphics.Depth;
 import com.dbraillon.dbgraphics.Point;
+import com.dbraillon.dbgraphics.Renderable;
 import com.dbraillon.dtetris.GameConfigs;
 
-public class Square {
+public class Square extends Renderable {
 
 	private int x, y;
-	private Color color;
+	private Image image;
+	private boolean isEmpty;
 	
-	public Square(int x, int y, Color color) {
+	public Square(int x, int y, Image image, Point position) {
+		super(position, Depth.Middle);
 		
 		this.x = x;
 		this.y = y;
-		this.color = color;
+		this.image = image;
+		this.isEmpty = false;
+	}
+	
+	public Square(int x, int y, Image image, Point position, boolean isEmpty) {
+		super(position, Depth.Middle);
+		
+		this.x = x;
+		this.y = y;
+		this.image = image;
+		this.isEmpty = isEmpty;
+	}
+	
+	@Override
+	protected void render(GameContainer gameContainer) {
+		
+		if(y > 1 || isEmpty) {
+		
+			gameContainer.getGraphics().drawImage(image, 
+					x * GameConfigs.gameSquareSize + getPosition().getX(), 
+					y * GameConfigs.gameSquareSize + getPosition().getY());
+		}
 	}
 	
 	public void fall(int fall) {
@@ -38,13 +63,11 @@ public class Square {
 		return y;
 	}
 
-	public void draw(Graphics graphics, Point position) {
-		
-		graphics.setColor(color);
-		graphics.fillRect(position.getX() + x * GameConfigs.gameSquareSize + 2, position.getY() + y * GameConfigs.gameSquareSize + 2, GameConfigs.gameSquareSize - 4, GameConfigs.gameSquareSize - 4);
-		
-		graphics.setColor(color.darker());
-		graphics.drawRect(position.getX() + x * GameConfigs.gameSquareSize + 1, position.getY() + y * GameConfigs.gameSquareSize + 1, GameConfigs.gameSquareSize - 3, GameConfigs.gameSquareSize - 3);
-		graphics.drawRect(position.getX() + x * GameConfigs.gameSquareSize, position.getY() + y * GameConfigs.gameSquareSize, GameConfigs.gameSquareSize - 1, GameConfigs.gameSquareSize - 1);
+	public boolean isEmpty() {
+		return isEmpty;
+	}
+
+	public void setEmpty(boolean isEmpty) {
+		this.isEmpty = isEmpty;
 	}
 }

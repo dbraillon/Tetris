@@ -2,11 +2,11 @@ package com.dbraillon.dtetris.entities;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 
 import com.dbraillon.dbgraphics.Depth;
 import com.dbraillon.dbgraphics.Point;
 import com.dbraillon.dbgraphics.Renderable;
+import com.dbraillon.dtetris.GameConfigs;
 import com.dbraillon.dtetris.advancedsystem.BoundingSquare;
 
 public class Tetromino extends Renderable {
@@ -37,56 +37,65 @@ public class Tetromino extends Renderable {
 		switch(this.type) {
 		case 'O':
 			// O
-			squares[0] = new Square(5,0, new Color(255, 255, 0));
-			squares[1] = new Square(5,1, new Color(255, 255, 0));
-			squares[2] = new Square(6,0, new Color(255, 255, 0));
-			squares[3] = new Square(6,1, new Color(255, 255, 0));
+			squares[0] = new Square(5,0, GameConfigs.getInstance().yellowSquare, position);// new Color(255, 255, 0));
+			squares[1] = new Square(5,1, GameConfigs.getInstance().yellowSquare, position);
+			squares[2] = new Square(6,0, GameConfigs.getInstance().yellowSquare, position);
+			squares[3] = new Square(6,1, GameConfigs.getInstance().yellowSquare, position);
 			break;
 		case 'T':
 			// T
-			squares[0] = new Square(4,1, new Color(0, 255, 255));
-			squares[1] = new Square(5,1, new Color(0, 255, 255));
-			squares[2] = new Square(6,1, new Color(0, 255, 255));
-			squares[3] = new Square(5,0, new Color(0, 255, 255));
+			squares[0] = new Square(4,1, GameConfigs.getInstance().purpleSquare, position);// new Color(0, 255, 255));
+			squares[1] = new Square(5,1, GameConfigs.getInstance().purpleSquare, position);
+			squares[2] = new Square(6,1, GameConfigs.getInstance().purpleSquare, position);
+			squares[3] = new Square(5,0, GameConfigs.getInstance().purpleSquare, position);
 			break;
 		case 'I':
 			// I
-			squares[0] = new Square(4,0, new Color(255, 0, 255));
-			squares[1] = new Square(5,0, new Color(255, 0, 255));
-			squares[2] = new Square(6,0, new Color(255, 0, 255));
-			squares[3] = new Square(7,0, new Color(255, 0, 255));
+			squares[0] = new Square(4,0, GameConfigs.getInstance().cyanSquare, position);// new Color(255, 0, 255));
+			squares[1] = new Square(5,0, GameConfigs.getInstance().cyanSquare, position);
+			squares[2] = new Square(6,0, GameConfigs.getInstance().cyanSquare, position);
+			squares[3] = new Square(7,0, GameConfigs.getInstance().cyanSquare, position);
 			break;
 		case 'L':
 			// L
-			squares[0] = new Square(4,1, new Color(255, 127, 0));
-			squares[1] = new Square(5,1, new Color(255, 127, 0));
-			squares[2] = new Square(6,1, new Color(255, 127, 0));
-			squares[3] = new Square(6,0, new Color(255, 127, 0));
+			squares[0] = new Square(4,1, GameConfigs.getInstance().orangeSquare, position);// new Color(255, 127, 0));
+			squares[1] = new Square(5,1, GameConfigs.getInstance().orangeSquare, position);
+			squares[2] = new Square(6,1, GameConfigs.getInstance().orangeSquare, position);
+			squares[3] = new Square(6,0, GameConfigs.getInstance().orangeSquare, position);
 			break;
 		case 'J':
 			// J
-			squares[0] = new Square(4,1, new Color(0, 0, 255));
-			squares[1] = new Square(5,1, new Color(0, 0, 255));
-			squares[2] = new Square(6,1, new Color(0, 0, 255));
-			squares[3] = new Square(4,0, new Color(0, 0, 255));
+			squares[0] = new Square(4,1, GameConfigs.getInstance().blueSquare, position);// new Color(0, 0, 255));
+			squares[1] = new Square(5,1, GameConfigs.getInstance().blueSquare, position);
+			squares[2] = new Square(6,1, GameConfigs.getInstance().blueSquare, position);
+			squares[3] = new Square(4,0, GameConfigs.getInstance().blueSquare, position);
 			break;
 		case 'Z':
 			// Z
-			squares[0] = new Square(4,0, new Color(255, 0, 0));
-			squares[1] = new Square(5,0, new Color(255, 0, 0));
-			squares[2] = new Square(5,1, new Color(255, 0, 0));
-			squares[3] = new Square(6,1, new Color(255, 0, 0));
+			squares[0] = new Square(4,0, GameConfigs.getInstance().redSquare, position);// new Color(255, 0, 0));
+			squares[1] = new Square(5,0, GameConfigs.getInstance().redSquare, position);
+			squares[2] = new Square(5,1, GameConfigs.getInstance().redSquare, position);
+			squares[3] = new Square(6,1, GameConfigs.getInstance().redSquare, position);
 			break;
 		case 'S':
 			// S
-			squares[0] = new Square(4,1, new Color(0, 255, 0));
-			squares[1] = new Square(5,1, new Color(0, 255, 0));
-			squares[2] = new Square(5,0, new Color(0, 255, 0));
-			squares[3] = new Square(6,0, new Color(0, 255, 0));
+			squares[0] = new Square(4,1, GameConfigs.getInstance().greenSquare, position);// new Color(0, 255, 0));
+			squares[1] = new Square(5,1, GameConfigs.getInstance().greenSquare, position);
+			squares[2] = new Square(5,0, GameConfigs.getInstance().greenSquare, position);
+			squares[3] = new Square(6,0, GameConfigs.getInstance().greenSquare, position);
 			break;
 		}
 		
 		boundingSquare = new BoundingSquare(this);
+	}
+	
+	@Override
+	protected void render(GameContainer gameContainer) {
+		
+		for(Square square : squares) {
+			
+			square.render(gameContainer);
+		}
 	}
 	
 	public void fall() {
@@ -103,20 +112,6 @@ public class Tetromino extends Renderable {
 			
 			squares[i].move(move);
 		}
-	}
-	
-	@Override
-	protected void render(GameContainer gameContainer) {
-		
-		for(Square square : squares) {
-			
-			square.draw(gameContainer.getGraphics(), getPosition());
-		}
-	}
-	
-	public void draw(Graphics graphics) {
-		
-		
 	}
 
 	public void rotate(int rotation) {
@@ -635,9 +630,14 @@ public class Tetromino extends Renderable {
 		
 		for(Square square : squares) {
 			
-			if(playfield.getSquare(square.getX(), square.getY()) != null) {
+			Square playfieldSquare = playfield.getSquare(square.getX(), square.getY());
+			
+			if(playfieldSquare != null) {
 				
-				return true;
+				if(!playfieldSquare.isEmpty()) {
+				
+					return true;
+				}
 			}
 		}
 		
