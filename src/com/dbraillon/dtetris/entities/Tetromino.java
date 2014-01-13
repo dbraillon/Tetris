@@ -105,6 +105,14 @@ public class Tetromino extends Renderable {
 			squares[i].fall(1);
 		}
 	}
+
+	public void up() {
+		
+		for(int i = 0; i < squares.length; i++) {
+			
+			squares[i].fall(-1);
+		}
+	}
 	
 	public void move(int move) {
 		
@@ -642,14 +650,6 @@ public class Tetromino extends Renderable {
 		}
 		
 		return false;
-	}
-
-	public void up() {
-		
-		for(int i = 0; i < squares.length; i++) {
-			
-			squares[i].fall(-1);
-		}
 	}
 	
 	@Override
