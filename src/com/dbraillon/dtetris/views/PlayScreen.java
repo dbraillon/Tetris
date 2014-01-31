@@ -5,13 +5,16 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 
 import com.dbraillon.dbgraphics.Screen;
-import com.dbraillon.dtetris.DelayedAutoShift;
-import com.dbraillon.dtetris.Playfield;
-import com.dbraillon.dtetris.RandomGenerator;
-import com.dbraillon.dtetris.ScoringSystem;
-import com.dbraillon.dtetris.SuperMoveSystem;
-import com.dbraillon.dtetris.SuperRotationSystem;
-import com.dbraillon.dtetris.Tetromino;
+
+import com.dbraillon.dtetris.GameConfigs;
+import com.dbraillon.dtetris.advancedsystem.DelayedAutoShift;
+import com.dbraillon.dtetris.advancedsystem.LevelSystem;
+import com.dbraillon.dtetris.advancedsystem.RandomGenerator;
+import com.dbraillon.dtetris.advancedsystem.ScoringSystem;
+import com.dbraillon.dtetris.advancedsystem.SuperMoveSystem;
+import com.dbraillon.dtetris.advancedsystem.SuperRotationSystem;
+import com.dbraillon.dtetris.entities.Playfield;
+import com.dbraillon.dtetris.entities.Tetromino;
 
 public class PlayScreen extends Screen {
 
@@ -22,6 +25,7 @@ public class PlayScreen extends Screen {
 	private SuperRotationSystem superRotationSystem;
 	private DelayedAutoShift delayedAutoShift;
 	private ScoringSystem scoringSystem;
+	private LevelSystem levelSystem;
 	
 	private Tetromino tetromino;
 	
@@ -34,13 +38,14 @@ public class PlayScreen extends Screen {
 	
 	public PlayScreen() {
 		
-		playfield = new Playfield(22, 12);
+		playfield = new Playfield(GameConfigs.playfieldHeight, GameConfigs.playfieldWidth);
 		
 		randomGenerator = new RandomGenerator(playfield.getPosition());
 		superMoveSystem = new SuperMoveSystem();
 		superRotationSystem = new SuperRotationSystem();
 		delayedAutoShift = new DelayedAutoShift();
 		scoringSystem = new ScoringSystem();
+		levelSystem = new LevelSystem(1);
 		
 		tetromino = randomGenerator.nextPiece();
 		
@@ -76,6 +81,10 @@ public class PlayScreen extends Screen {
 		if(fallTimer >= fallSpeed) {
 			
 			if(!superMoveSystem.fall(playfield, tetromino)) {
+
+				// check if it's the end
+				if(tetromino.isOverlapsTopBar())
+					getNavigator().popScreen(this);
 				
 				// add the Tetromino in the Playfield
 				playfield.setTetromino(tetromino);
@@ -99,6 +108,5 @@ public class PlayScreen extends Screen {
 			
 			moveTimer++;
 		}
-		
 	}
 }

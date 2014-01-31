@@ -1,4 +1,4 @@
-package com.dbraillon.dtetris;
+package com.dbraillon.dtetris.advancedsystem;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;

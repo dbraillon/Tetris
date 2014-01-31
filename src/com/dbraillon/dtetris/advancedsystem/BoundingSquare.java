@@ -1,4 +1,7 @@
-package com.dbraillon.dtetris;
+package com.dbraillon.dtetris.advancedsystem;
+
+import com.dbraillon.dtetris.entities.Playfield;
+import com.dbraillon.dtetris.entities.Tetromino;
 
 
 public class BoundingSquare {

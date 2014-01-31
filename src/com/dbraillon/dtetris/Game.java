@@ -6,7 +6,6 @@ import com.dbraillon.dbgraphics.Screen;
 import com.dbraillon.dbgraphics.UiApplication;
 import com.dbraillon.dtetris.views.MenuScreen;
 
-
 public class Game extends UiApplication {
 
 	// TODO: http://tetris.wikia.com/wiki/Tetris_Guideline

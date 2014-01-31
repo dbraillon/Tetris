@@ -1,4 +1,7 @@
-package com.dbraillon.dtetris;
+package com.dbraillon.dtetris.advancedsystem;
+
+import com.dbraillon.dtetris.entities.Playfield;
+import com.dbraillon.dtetris.entities.Tetromino;
 
 public class SuperMoveSystem {
 
@@ -29,14 +32,17 @@ public class SuperMoveSystem {
 		
 		System.out.println("-SuperMoveSystem: " + tetromino.toString() + " moves " + toString(move));
 		
-		// first, move the Tetromino
-		tetromino.move(move);
-		
-		// then watch if it overlaps a Square
-		if(tetromino.isOverlaps(playfield)) {
+		if(tetromino.isVisible()) {
 			
-			// if it does, reverse move
-			tetromino.move(-move);
+			// first, move the Tetromino
+			tetromino.move(move);
+			
+			// then watch if it overlaps a Square
+			if(tetromino.isOverlaps(playfield)) {
+				
+				// if it does, reverse move
+				tetromino.move(-move);
+			}
 		}
 	}
 	

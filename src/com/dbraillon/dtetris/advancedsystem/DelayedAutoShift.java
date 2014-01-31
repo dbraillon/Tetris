@@ -1,7 +1,10 @@
-package com.dbraillon.dtetris;
+package com.dbraillon.dtetris.advancedsystem;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Input;
+
+import com.dbraillon.dtetris.entities.Playfield;
+import com.dbraillon.dtetris.entities.Tetromino;
 
 public class DelayedAutoShift {
 

@@ -1,41 +1,41 @@
-package com.dbraillon.dtetris;
+package com.dbraillon.dtetris.entities;
 
 import java.util.ArrayList;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 
 import com.dbraillon.dbgraphics.Depth;
 import com.dbraillon.dbgraphics.Point;
 import com.dbraillon.dbgraphics.Renderable;
+import com.dbraillon.dtetris.GameConfigs;
 
 public class Playfield extends Renderable {
 
-	private final Color DARK_GREY_COLOR = new Color(120, 120, 120);
-	private final Color BLACK_COLOR = new Color(10, 10, 10);
-	
 	private Square[][] squares;
 	
-	
 	public Playfield(int height, int width) {
-		super(new Point(175, 50), Depth.Middle, new Color(10, 10, 10), height, width);
+		super(new Point(175, -16), Depth.Middle);
 		
-		this.squares = new Square[width][height];
-		for(int y = 0; y < getHeight(); y++) {
+		// Set playfield size
+		setHeight(height + 3);
+		setWidth(width + 2);
+		
+		// Table that contains all Tetrominos 
+		squares = new Square[(int) getWidth()][(int) getHeight()];
+		
+		// Loop in the table
+		for(int y = 1; y < getHeight(); y++) {
 			
 			for(int x = 0; x < getWidth(); x++) {
 				
-				if(y == getHeight()-1 || x == 0 || x == getWidth()-1) {
+				// Put walls
+				if(y == 1) {
 					
-					squares[x][y] = new Square(x, y, DARK_GREY_COLOR, false);
+					squares[x][y] = new Square(x, y, GameConfigs.getInstance().graySquare, getPosition(), true);
 				}
-				else if(y == 2) {
+				else if(y == getHeight() - 1 || x == 0 || x == getWidth() - 1) {
 					
-					squares[x][y] = new Square(x, y, DARK_GREY_COLOR, true);
-				}
-				else {
-					
-					squares[x][y] = new Square(x, y, BLACK_COLOR, true);
+					squares[x][y] = new Square(x, y, GameConfigs.getInstance().graySquare, getPosition());
 				}
 			}
 		}
@@ -47,8 +47,9 @@ public class Playfield extends Renderable {
 		for(int y = 0; y < getHeight(); y++) {
 			
 			for(int x = 0; x < getWidth(); x++) {
-				
-				squares[x][y].draw(gameContainer.getGraphics(), getPosition());
+
+				if(squares[x][y] != null)
+					squares[x][y].render(gameContainer);
 			}
 		}
 	}
@@ -89,8 +90,8 @@ public class Playfield extends Renderable {
 			boolean isComplete = true;
 			ArrayList<Square> line = getLines(lines.get(y)+yyy);
 			for(Square square : line) {
-				
-				if(square.isEmpty()) {
+
+				if(square == null) {
 					
 					isComplete = false;
 				}
@@ -115,15 +116,16 @@ public class Playfield extends Renderable {
 				
 				if(y-1 == 2) {
 					
-					squares[x][y] = new Square(x, y, BLACK_COLOR, true);
+					squares[x][y] = null;
 				}
 				else {
 					
 					Square cube = squares[x][y-1];
-					cube.fall(1);
+					if(cube != null)
+						cube.fall(1);
 					
 					squares[x][y] = cube;
-					squares[x][y-1] = new Square(x, y-1, BLACK_COLOR, true);
+					squares[x][y-1] = null;
 				}
 			}
 		}
@@ -137,6 +139,11 @@ public class Playfield extends Renderable {
 	public void setSquare(Square square) {
 		
 		squares[square.getX()][square.getY()] = square;
+	}
+	
+	public void nullSquare(int x, int y) {
+		
+		squares[x][y] = null;
 	}
 	
 	public ArrayList<Square> getLines(int y) {
@@ -153,8 +160,8 @@ public class Playfield extends Renderable {
 	public void removeLine(ArrayList<Square> line) {
 		
 		for(Square square : line) {
-			
-			setSquare(new Square(square.getX(), square.getY(), BLACK_COLOR, true));
+
+			nullSquare(square.getX(), square.getY());
 		}
 	}
 }
