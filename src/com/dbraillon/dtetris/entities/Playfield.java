@@ -116,7 +116,7 @@ public class Playfield extends Renderable {
 				
 				if(y-1 == 2) {
 					
-					squares[x][y] = null;//new Square(x, y, BLACK_COLOR);
+					squares[x][y] = null;
 				}
 				else {
 					
@@ -125,7 +125,7 @@ public class Playfield extends Renderable {
 						cube.fall(1);
 					
 					squares[x][y] = cube;
-					squares[x][y-1] = null;//new Square(x, y-1, BLACK_COLOR);
+					squares[x][y-1] = null;
 				}
 			}
 		}

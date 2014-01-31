@@ -81,6 +81,10 @@ public class PlayScreen extends Screen {
 			
 			if(!superMoveSystem.fall(playfield, tetromino)) {
 				
+				// check if it's the end
+				if(tetromino.isOverlapsTopBar())
+					getNavigator().popScreen(this);
+				
 				// add the Tetromino in the Playfield
 				playfield.setTetromino(tetromino);
 				scoringSystem.scoreLines(playfield.checkLines(tetromino));
@@ -103,6 +107,5 @@ public class PlayScreen extends Screen {
 			
 			moveTimer++;
 		}
-		
 	}
 }

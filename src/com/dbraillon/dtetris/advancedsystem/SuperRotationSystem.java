@@ -15,15 +15,18 @@ public class SuperRotationSystem {
 		
 		System.out.println("-SuperRotationSystem: " + tetromino.toString() + " wants to turn " + toString(rotation));
 		
-		// first, rotate the Tetrominoes
-		tetromino.rotate(rotation);
-		
-		// then watch if it overlaps a Square
-		if(tetromino.isOverlaps(playfield)) {
+		if(tetromino.isVisible()) {
 			
-			// if it does, try to wall kicks
-			tetromino.rotate(-rotation);
-			//wallKicks(tetromino);
+			// first, rotate the Tetrominoes
+			tetromino.rotate(rotation);
+			
+			// then watch if it overlaps a Square
+			if(tetromino.isOverlaps(playfield)) {
+				
+				// if it does, try to wall kicks
+				tetromino.rotate(-rotation);
+				//wallKicks(tetromino);
+			}
 		}
 	}
 	

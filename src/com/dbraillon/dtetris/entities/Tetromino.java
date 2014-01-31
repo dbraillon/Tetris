@@ -652,6 +652,32 @@ public class Tetromino extends Renderable {
 		return false;
 	}
 	
+	public boolean isOverlapsTopBar() {
+		
+		for(Square square : squares) {
+			
+			if(square.getY() == 1 && square.getX() >= 4 && square.getX() <= 7) {
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean isVisible() {
+		
+		for(Square square : squares) {
+			
+			if(square.getY() <= 1) {
+				
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	@Override
 	public String toString()
 	{
